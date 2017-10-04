@@ -1,0 +1,74 @@
+		<?php
+		require_once('config.php');
+		require('header.php');
+		require('session.php');
+		$session_id  = session_id();
+		$UserEmail = $_SESSION['UserEmail'];
+		$amount = $_SESSION['amount'];
+
+		?>
+
+		<!--sticky div-->    
+		<div id="checkout">
+		<div class="container">
+		<div class="row">
+		<?php if(!empty($_POST['stripeToken']))
+		{
+		$token  = $_POST['stripeToken'];
+		$stripeTokenType = $_POST['stripeTokenType'] ;
+		$stripeEmail = $_POST['stripeEmail'] ;
+		
+		$customer = \Stripe\Customer::create(array(
+		'email' => $_POST['stripeEmail'],
+		'source'  => $token
+		));
+
+		$charge = \Stripe\Charge::create(array(
+		'customer' => $customer->id,
+		'amount'   => $amount,
+		'currency' => 'usd'
+		));
+
+		//insert into transactions  table
+
+		$transactions = array(
+
+		'transactions_id' => $charge->id,
+		'customer_email' => $stripeEmail,
+		'total_amount ' => $charge->amount,
+		'payment_type' => $stripeTokenType,
+		'transactions_status' => $charge->status
+		);
+		
+		print_r($charge);
+		
+		if($charge->status == "succeeded" )
+		{
+		$trans_insert = trans_insert($con,$transactions);
+		$token  = $_POST['stripeToken'];
+		$stripeTokenType = $_POST['stripeTokenType'] ;
+		$stripeEmail = $_POST['stripeEmail'] ;
+		$transactions_status = $charge->status;
+
+		// Update Orders Status
+		$sql = "UPDATE orders SET order_status = 'Complete'  WHERE session_id = '$session_id' ";
+		$run = mysqli_query($con,$sql) or die(mysqli_error($con));
+		if($run == true)
+		{
+			echo "<h5>Thanks For Payment</h5>";
+		}
+		}else{
+			
+			echo "<h5>Payment Fail Please Try Again</h5>";
+		}
+		}
+
+		?>  	
+		</div><!--row-->
+		</div>
+		</div>
+		<div class="clearfix"></div>
+		<!--footer-->
+		<?php
+		require('footer.php');
+		?>
