@@ -6,7 +6,6 @@
         $UserEmail = $_SESSION['UserEmail'];
         $UserID = $_SESSION['UserID'];
         $amount = $_SESSION['amount'];
-        
         $stripe = array(
         "secret_key"      => "sk_test_BlfB7XmW8MwiFlNNkjHQXfNV",
         "publishable_key" => "pk_test_phdcO15JgKj8bzJqXc53rRQE"
@@ -18,7 +17,6 @@
         
         if(isset($_POST['stripeToken']))
         {
-            
         $token = $_POST['stripeToken'];  
         $stripeEmail = $_POST['email'];  
         $amount = $_POST['amount'];  // Chargeble amount
@@ -63,7 +61,6 @@
         }
         }
         ?>
-        
         <!--sticky div-->    
         <div id="checkout">
         <div class="container">
@@ -81,25 +78,33 @@
         <span class="payment-errors"></span>
         <div class="form-group">
         <label for="cardnumber">Card Number</label>
-        <input type="text" size="20" class="form-control" data-stripe="number">
+        <ul class="credit_cards unstyled">
+                      <li class="visa" data-type="visa"></li>
+                      <li class="master_card" data-type="master"></li>
+                      <li class="amex" data-type="amex"></li>
+                      <li class="ddiscover" data-type="disc"></li>
+                      <li class="diners" data-type="dinn"></li>
+                      <li class="jcb" data-type="jcb"></li>
+                    </ul>
+        <input type="text" size="20" name="card_number" class="form-control" data-stripe="number" onblur="validateCardNumber()" onkeyup="detectCardType(event)">
         </div>
         <div class="form-group">
         <div class="row">
         <div class="col-xs-6">
         <div class="form-group">
         <label for="month">Month</label>
-        <input type="text" size="2" data-stripe="exp_month" class="form-control">
+        <input type="text" size="2" maxlength="2" data-stripe="exp_month" class="form-control">
         </div>
         </div>
         <div class="col-xs-6">
         <label for="month">Year</label>
-        <input type="text" size="2" data-stripe="exp_year" class="form-control">
+        <input type="text" size="4" maxlength="4" data-stripe="exp_year" class="form-control">
         </div>
         </div>
         </div>
         <div class="form-group">
         <label for="cvv">CVC</label>
-        <input type="text" size="4" data-stripe="cvc" class="form-control">
+        <input type="password" id="r_cvc" maxlength="4" size="4" data-stripe="cvc" class="form-control">
         </div>
         <div class="form-group">
         <label for="email">Email</label>
@@ -140,15 +145,23 @@
         function stripeResponseHandler(status, response) {
         // Grab the form:
         var $form = $('#payment-form');
-        
         if (response.error) { // Problem!
         
         // Show the errors on the form:
         $form.find('.payment-errors').text(response.error.message);
         $form.find('.submit').prop('disabled', false); // Re-enable submission
+        var top = $(".payment-errors").offset().top - 200;
+            $("html,body").stop().animate({ scrollTop: top });
         
         } else { // Token was created!
-        
+
+        if($('#r_cvc').val()==''){
+                $form.find('.payment-errors').text('CVC number is required');
+                $form.find('.submit').prop('disabled', false); // Re-enable submission
+                var top = $(".payment-errors").offset().top - 200;
+            $("html,body").stop().animate({ scrollTop: top });
+                return false;      
+        }
         // Get the token ID:
         var token = response.id;
         

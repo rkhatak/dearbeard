@@ -1,19 +1,40 @@
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/ajax-sumit.js"></script>
-		<script src="js/custom.js"></script>
+		<script src="js/custom.js"></script> -->
 		<?php
 		require_once('admin/config.php');
-		$subcat_value = $_POST['subcat_value'];
+        $subcat_value = $_POST['subcat_value'];
+        
+        $condition="";
+        if($subcat_value=='all'){
+            $condition.=$condition; 
+        }else{
+            
+                       if(count($subcat_value)==1){
+                            $condition.="AND subproduct_cat_id = '$subcat_value[0]'";  
+                        }else{
+                                $condition.="AND ";
+                                foreach($subcat_value as $key=>$v){
+                                        if(count($subcat_value)==$key+1){
+                                                $condition.="subproduct_cat_id = '$v'";    
+                                            }else{
+                                                    $condition.="subproduct_cat_id = '$v' OR ";  
+                                                }
+                                            }
+                        }
+            
+        }
+
 
 		// List View
 
-		$sql_catproduct= "SELECT *FROM product WHERE status = 'Publish' AND subproduct_cat_id = '$subcat_value'";
+		$sql_catproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
 		$run_catproduct = mysqli_query($con,$sql_catproduct) or die(mysqli_error($con));
 		$total_productlist = mysqli_num_rows($run_catproduct);
 
 		// Windows View
 
-		$sql_winproduct= "SELECT *FROM product WHERE status = 'Publish' AND subproduct_cat_id = '$subcat_value'";
+		$sql_winproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
 		$cat_product_win = mysqli_query($con,$sql_winproduct) or die(mysqli_error($con));
 		$total_productwin = mysqli_num_rows($cat_product_win);
 

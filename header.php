@@ -47,7 +47,7 @@
 	echo "<script>alert('Username Or Password Incorect')</script>";
 	}
 	}
-	
+	$run_cart = showcart($con,$session_id);
 	?>
 
 	<!DOCTYPE html>
@@ -193,11 +193,59 @@
 	</span>
 	</a>
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>				
+	
 	<div class="dropdown-menu mega-dropdown-menu">
-	Your Baxter of California shopping bag is empty.Shop now to find your favorite Baxter of California products.
+	<?php
+		if(tottalcart($con,$session_id)>0){
+		
+		while($cart_item = mysqli_fetch_array($run_cart))
+		{
 
+		?>
+		<div class="item-in-cart">
+		<div class="item-one">
+		<div class="left-one">	
+		<div class="product">
+		<img src="admin/product_pic/<?php echo $cart_item['product_image'];?>" alt="<?php echo $cart_item['product_name'];?>">
+			
+		<br>
+		<p><?php echo $cart_item['product_name'];?></p>
+		</div>
+		</div>
+		<div class="item-two">
+		<h4>quantity</h4>
+		
+		<?php echo $cart_item['product_quantity'];?>	
+		
+		</div>
+		<div class="item-three">
+		<h4>Price</h4>	
+		<?php echo "$".$cart_item['product_price'];?>                  	
+		</div>
+		
+	
+		</div>
+		<?php
+	
+		}
+	}else{
+
+		?>
+
+	      Your Baxter of California shopping bag is empty.Shop now to find your favorite Baxter of California products.
+	<?php } ?>
 	</div>
 	</li>
+	<?php
+	if(isset($_SESSION['uname']) && $_SESSION['uname']!=''){ ?>
+	<li>
+	<a href="userpanel/index.php"><img src="images/person-icon.svg" alt="icon" class="icon"></a>
+	Hi <?php echo $_SESSION['uname'];?>
+	<br>
+	<a href="logout.php">Log out</a>
+	</li>
+	<?php }else{ ?>	
+
 	<li class="login dropdown mega-dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="images/person-icon.svg" alt="icon" class="icon"></a>
 	<ul class="dropdown-menu mega-dropdown-menu">
@@ -228,6 +276,7 @@
 	</div>
 	</ul>
 	</li>
+	<?php	} ?>
 	</ul>
 	</div>
 	<!--menu-->

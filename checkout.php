@@ -49,27 +49,12 @@
 				<?php if(!empty($total_items['item']) && ($total_items['item'] != ''))
 				{
 					?>
-                	<div class="col-sm-4">
+                	<div class="col-sm-6">
                 		<h4>shipping address</h4>		
                     	<p><?php echo $user_shipdata['UserFirstName']." ".$user_shipdata['UserLastName']."<br/>". $user_shipdata['ShipingAddress']."<br/>".$user_shipdata['ShipingCity']."<br/>".$user_shipdata['ShipingState']."<br/>".$user_shipdata['ShipingState']."-".$user_shipdata['ShipingZip'].",".$user_shipdata['ShipingCountry'];?></p>
                     </div><!--col-sm-4-->
-                    <div class="col-sm-4">
-                        <h4>payment method</h4>
-                        <div class="payment-method">
-                        	<form method="post" action="#">
-                            	<div class="form-group">
-                                	<select class="form-control down">
-                                		<option>Change Method</option>
-                                    	<option>Paypal</option>
-                                    	<option>Credit Card</option>
-                                        <option>Bitcoin</option>
-                                	</select>
-                                </div>
-                                <a href="#" class="cod">Cash On Delivery</a>
-		                    </form>
-                        </div>
-                    </div><!--col-sm-4-->
-                    <div class="col-sm-4">
+                   <!--col-sm-4-->
+                    <div class="col-sm-6">
 					
                         <h4>place your order</h4>
                         <div class="order-summary">

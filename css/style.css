@@ -72,7 +72,7 @@ h6{font-size:14px;}
 box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);*/position:relative;z-index:99;padding-top:5px;}
 .navbar{margin-bottom:0;}
 .navbar .container-fluid{width:1050px;margin:0 auto;}
-.icon-set{width:135px;position:absolute;top:-7px;right:105px;}
+.icon-set{width:240px;position:absolute;top:-7px;right:105px;}
 .icon-set li{display:inline-block;}
 .navbar-default{background:none;border:none;}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {background:none;}
@@ -83,7 +83,7 @@ box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);*/position:relative;z-index:99;padd
 .navbar-nav>li:nth-child(6) a{padding-left:0;}
 .navbar-nav>li:nth-child(5) a{padding:10px 30px;}
 .navbar-nav>li:nth-child(4) a{padding-right:0;}
-.icon-set{padding-top:57px;}
+.icon-set{padding-top:40px;}
 .icon-set li a{padding:0 6px;}
 ::-webkit-input-placeholder {font-weight:500!important;color:#939393!important;font-size:14px!important;}
 ::-moz-placeholder{font-weight:500!important;color:#939393!important;font-size:14px!important;}
@@ -92,7 +92,7 @@ box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.46);*/position:relative;z-index:99;padd
 .cart{position:relative;}
 .quantity{width:15px;height:15px;border-radius:15px;background:#313131;color:#fff;font-weight:300;position:absolute;text-align:center;font-size:9.39px;top:8px;right:15px;padding-top:1px;}
 .navbar-default .navbar-nav > li > a:hover{/*color:#7f7f7f!important;*/}
-.cart.dropdown .dropdown-menu{min-width:320px;padding:10px;background:#fff!important;border:1px solid #000;top:63px;left:-270px;color:#000;box-shadow:none;font-weight:bold;z-index:9;border-radius:0;}
+.cart.dropdown .dropdown-menu{min-width:500px;padding:10px;background:#fff!important;border:1px solid #000;top:63px;left:-270px;color:#000;box-shadow:none;font-weight:bold;z-index:9;border-radius:0;}
 .cart.dropdown .dropdown-menu:hover{display:block!important;}
 .search.dropdown .dropdown-menu{min-width:900px!important;padding:75px;background:#fff!important;border:1px solid #000;top:63px;left:-800px;color:#fff;box-shadow:none;font-weight:bold;z-index:9;border-radius:0;}
 .search.dropdown .dropdown-menu:hover{display:block!important;}
@@ -307,7 +307,7 @@ footer .col-left ul li a:hover{color:#000;}
 
 /**********************************sticky_div******************************/
 #sticky_div{width:100%;z-index:9;top:0;}
-#banner-slider{padding-top:12%;}
+/* 864 */
 
 /**********************************sticky_div******************************/
 
@@ -512,7 +512,7 @@ footer .col-left ul li a:hover{color:#000;}
 
 /*****************************************************your cart********************************************************************/
 #your-cart .container{width:1144px;margin:0 auto;}
-#your-cart{padding:15% 0 0 0;}
+/* #your-cart{padding:15% 0 0 0;} */
 #your-cart h1{text-align:center;font-weight:400;font-size:41.72px;color:#000;}
 #your-cart .free{width:692px;margin:0 auto;text-align:center;font-size:16px;color:#000;padding:35px 0;}
 /*****************************************************your cart*******************************************************************/
@@ -701,7 +701,7 @@ transition:background-color 0.4s ease-out;
 
 
 /**************************************************************checkout*****************************************************************/
-#checkout{padding:18% 0 30px 0;color:#000;}
+/* #checkout{padding:18% 0 30px 0;color:#000;} */
 #checkout .container{width:960px;margin:0 auto;}
 #checkout h4{padding:0 0 15px 0;text-align:center;}
 #checkout .form-control{border:1px solid #000;background:#fff;}
@@ -848,7 +848,7 @@ div.effect div.effect_box{min-height:267px;width:100%;background-color:rgba(0,0,
 
 
 /***************************************************ekta (22/09/2017) catagory page css*************************************************/
-.cat-main{padding-top:15%;}
+/* .cat-main{padding-top:15%;} */
 .left_sec{height:auto;width:23.8%;float:left;display:block;}
 .right_sec{height:auto;width:73.4%;float:left;margin-left:30px;margin-top: 48px;}
 .left_heading{ font-family: 'Roboto',sans-serif;    font-weight: bold;    font-size: 15px;    padding: 15px 0px 15px 0px;color:#000;margin:0;}
@@ -861,7 +861,7 @@ div.effect div.effect_box{min-height:267px;width:100%;background-color:rgba(0,0,
 .control {	display: block;	position: relative;	padding-left: 30px;	margin-bottom: 8px;	cursor: pointer;	font-size: 14px;	line-height: 26px;	color: #000;margin-left:2px;font-weight: 500;font-family: 'Roboto',sans-serif;}
 .control__indicator {position: absolute;top: 2px;left: 0;height: 20px;width: 20px;border:1px solid #000;background: #fff;}
 .control input:checked ~ .control__indicator:after {display: none;}
-.control--checkbox .control__indicator:after {left: 5px;top: 0px;width: 8px;height: 16px;border: solid #000;border-width: 0 2px 2px 0;	transform: rotate(45deg);}
+/* .control--checkbox .control__indicator:after {left: 5px;top: 0px;width: 8px;height: 16px;border: solid #000;border-width: 0 2px 2px 0;	transform: rotate(45deg);} */
 .control--checkbox input:disabled ~ .control__indicator:after {	border-color: #000;}
 .control input {	position: absolute;	z-index: -1;	opacity: 0;}
 .control--radio .control__indicator {	border-radius: 50%;}
@@ -1090,3 +1090,64 @@ body{}
 .headeruValid{color:red;font-size: 12px;position: absolute;top: 65px;}
 .regfname,.reglname,.regaddress,.regzip,.regpwd,.regcpwd,.regphone,.regemail{color:red;position:absolute;top:65px;font-size:12px;}
 /*********************************************************************messages color******************************************************/
+
+.owl-carousel .owl-item img{height:100%;  }
+#banner-slider .item{height: 530px}
+ul.credit_cards {
+  margin-top: 15px;
+  padding-bottom:30px;
+}
+.unstyled {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+ul.credit_cards li.visa {
+background-position: 0px 0px;
+}
+ul.credit_cards li:first-child {
+margin-left: 0px;
+}
+ul.credit_cards li.master_card {
+background-position: -32px 0px;
+}
+ul.credit_cards li.amex {
+background-position: -64px 0px;
+}
+ul.credit_cards li.ddiscover {
+background-position: -96px 0px;
+}
+ul.credit_cards li.diners {
+background-position: -128px 0px;
+}
+ul.credit_cards li.jcb {
+background-position: -160px 0px;
+}
+ul.credit_cards li {
+list-style: outside none none;
+display: inline-block;
+float:left;
+margin-left: 10px;
+background-image: url(../images/credit_cards.png);
+width: 32px;
+height: 21px;
+opacity: 0.25;
+transition: all 0.5s linear 0s;
+}
+ul.credit_cards li.correct {
+-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+filter: alpha(opacity=100);
+-moz-opacity: 1;
+-khtml-opacity: 1;
+opacity: 1;
+-webkit-transition: all .5s linear;
+-moz-transition: all .5s linear;
+-o-transition: all .5s linear;
+-ms-transition: all .5s linear;
+transition: all .5s linear;
+border-radius: 4px;
+box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+}
+
+.control--checkbox .control__indicator:after {left: 5px;top: 0px;width: 8px;height: 16px;border-width: 0 2px 2px 0;	transform: rotate(45deg);}
+.r_checkbox_indicator{left: 5px;top: 0px;width: 8px;height: 16px;border: solid #000;border-width: 0 2px 2px 0;	transform: rotate(45deg);}

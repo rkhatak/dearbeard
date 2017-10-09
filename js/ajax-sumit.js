@@ -184,9 +184,16 @@
 	
 	
 $('.category_name').on('click', function() {
-
-	var cat_value = $(this).val();
-
+	let arrCategory=[];
+	$('.control__indicator').removeClass('r_checkbox_indicator');
+	$('.r_left_sec input[type="checkbox"]:checked').each(function() { 
+		$(this).next().addClass('r_checkbox_indicator');
+		arrCategory.push($(this).val());
+    });
+	var cat_value =arrCategory;
+	if(cat_value.length==0){
+		cat_value="all";	
+	}
 	$.ajax({
 
 	type: "POST",
@@ -209,8 +216,18 @@ $('.category_name').on('click', function() {
 	
 	
 	$('.sub_cat_name').on('click', function() {
-
-	var subcat_value = $(this).val();
+		//alert('test');
+		let arrCategory=[];
+		$('.control__indicator').removeClass('r_checkbox_indicator');
+		$('.r_left_sec input[type="checkbox"]:checked').each(function() { 
+			$(this).next().addClass('r_checkbox_indicator');
+			arrCategory.push($(this).val());
+		});
+		var subcat_value =arrCategory;
+		if(subcat_value.length==0){
+			subcat_value="all";	
+		}
+		
 
 	$.ajax({
 

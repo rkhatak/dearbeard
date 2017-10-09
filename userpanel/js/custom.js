@@ -219,7 +219,17 @@ $(".img-circle").click(function() {
 
 /*************************** ekta (1909-2017) clear all******************************/
  var items=document.getElementsByName("items");
-	function clearAll(){items.item(0).checked=true;items.item(1).checked=true;items.item(2).checked=true;items.item(3).checked=true;items.item(4).checked=true;items.item(5).checked=true;items.item(6).checked=true;items.item(7).checked=true;items.item(8).checked=true;}
+	function clearAll(){
+        items.item(0).checked=true;
+        items.item(1).checked=true;
+        items.item(2).checked=true;
+        items.item(3).checked=true;
+        items.item(4).checked=true;
+        items.item(5).checked=true;
+        items.item(6).checked=true;
+        items.item(7).checked=true;
+        items.item(8).checked=true;
+    }
 /*************************** ekta (1909-2017) clear all******************************/
 
 /***************************  ekta (1909-2017)  window and list******************************/

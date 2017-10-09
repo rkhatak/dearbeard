@@ -149,7 +149,7 @@ $('.new_Btn').bind("click" , function () {
 $(document).ready(function(){
     $(".login").hover(            
         function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("1000");
             $(this).toggleClass('open');        
         },
         function() {
@@ -239,6 +239,102 @@ function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
   }
+
+ function detectCardType(event) {
+    cardNumberFormat(event);
+    var $element = $("input[name=card_number]");
+    var value = $element.val();
+    var cardType = getCardType(value);
+    $("ul.credit_cards li").removeClass('correct');
+    if (cardType) {
+      $("ul.credit_cards li[data-type='" + cardType + "']").addClass('correct');
+    }
+  };
+
+  function cardNumberFormat(event) {
+    var key = event.which;
+    if (key === 37 || key === 38 || key === 39 || key === 40 || key === 8 || key === 46) {
+      return true;
+    }
+    onlyNumber(event);
+    var valc = $(event.currentTarget).val().split(" ").join("");
+    if (valc.length > 16) {
+      valc = valc.substr(0, 16);
+    }
+    if (valc.length > 0) {
+      valc = valc.match(new RegExp('.{1,4}', 'g')).join(" ");
+    }
+    function onlyNumber(event) {
+    var key = event.which;
+    if (key === 37 || key === 38 || key === 39 || key === 40 || key === 8 || key === 46) {
+      return true;
+    }
+    var value = $(event.currentTarget).val().replace(/[^-0-9 !@#$%^&*()+,:;.",]/g, "");
+    value = value.replace(/\./g, '');
+    $(event.currentTarget).val(value);
+  }
+    $(event.currentTarget).val(valc);
+  };
+
+function getCardType(card_no) {
+    var card_number = card_no;
+    try {
+      var intCardNumber4 = parseInt(card_number.substr(0, 4), 10);
+      var intCardNumber6 = parseInt(card_number.substr(0, 6), 10);
+      var strCardNumber = card_number + "";
+    } catch (ex) {
+      var intCardNumber4 = 0;
+      var intCardNumber6 = 0;
+      var strCardNumber = "";
+    }
+    var isVISA = (new RegExp("^4.*")).test(strCardNumber);
+    var isMASTER = (new RegExp("^(51|52|53|54|55).*")).test(strCardNumber);
+    var isAMEX = (new RegExp("^(34|37).*")).test(strCardNumber);
+    var isDISC = (((new RegExp("^(6011|644|645|646|647|648|649|65).*")).test(strCardNumber)) || (intCardNumber6 > 622127 && intCardNumber6 < 622925));
+    var isDINN = (new RegExp("^(54|36|38|300|301|302|303|304|305).*")).test(strCardNumber);
+    var isJCB = intCardNumber4 >= 3528 && intCardNumber4 <= 3589;
+    if (isVISA) {
+      return "visa";
+    }
+    if (isMASTER) {
+      return "master";
+    }
+    if (isAMEX) {
+      return "amex";
+    }
+    if (isDISC) {
+      return "disc";
+    }
+    if (isDINN) {
+      return "dinn";
+    }
+    if (isJCB) {
+      return "jcb";
+    }
+    return false;
+  };
+
+  function validateCardNumber() {
+    var hasError = false,
+      cardNumber = $("input[name=card_number]");
+    if ($.trim(cardNumber.val()) === "") {
+      cardNumber.closest("div").find(".error-message").removeClass("hide").html('Try rubbing your fingers over the numbers, that helps us get \'em right');
+      hasError = true;
+    } else {
+      if (!isValidCardNumber(cardNumber)) {
+        cardNumber.closest("div").find(".error-message").removeClass("hide").html("We need all of the numbers on the card. All of \'em");
+        hasError = true;
+      } else {
+        cardNumber.closest("div").find(".error-message").addClass("hide");
+      }
+    }
+    return hasError;
+  };
+  function isValidCardNumber(element) {
+    var cardNumber = element.val();
+    cardNumber = cardNumber.replace(/ /g, '');
+    return cardNumber.length > 13 && cardNumber.length < 19 && getCardType(cardNumber);
+  };
 /**************************shopping bag*******************************/
 
 /****************************quantity + -*******************************/
@@ -345,7 +441,25 @@ if(wish_count==0){
 
 /*************************** ekta (1909-2017) clear all******************************/
  var items=document.getElementsByName("items");
-	function clearAll(){items.item(0).checked=true;items.item(1).checked=true;items.item(2).checked=true;items.item(3).checked=true;items.item(4).checked=true;items.item(5).checked=true;items.item(6).checked=true;items.item(7).checked=true;items.item(8).checked=true;}
+	function clearAll(){
+        $('.r_left_sec input[type="checkbox"]:checked').each(function() { 
+            $(this).next().removeClass('r_checkbox_indicator');
+            $(this).prop('checked', false);
+		});
+        $.ajax({
+    
+        type: "POST",
+    
+        url: "ajaxcategory.php",
+    
+        data: { cat_value : 'all' } 
+    
+        }).done(function(data){
+    
+        $(".cat_section").html(data);
+    
+        });
+    }
 /*************************** ekta (1909-2017) clear all******************************/
 
 /***************************  ekta (1909-2017)  window and list******************************/

@@ -52,7 +52,7 @@ function categoryproduct($con)
 
 // Window Category Product
 
-function categoryproduct_win($con,$cat_name,$sub_cat_name)
+function categoryproduct_win($con)
 {
 	$sql_catproduct= "SELECT *FROM product WHERE status = 'Publish'";
 	$run_catproduct = mysqli_query($con,$sql_catproduct) or die(mysqli_error($con));

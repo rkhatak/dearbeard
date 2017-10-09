@@ -1,6 +1,6 @@
         <?php
         require('header.php');
-        
+  
         if(isset($_POST['register']))
         {
         $f_name = mysqli_real_escape_string($con,$_POST['firstname']);
@@ -53,6 +53,13 @@
         $run_ship = mysqli_query($con,$sql_ship) or die(mysqli_error($con));
         $data_ship = mysqli_fetch_array($run_ship);
         $userid = $data_ship['UserID'];
+        $_SESSION['UserEmail'] = $email;
+        $_SESSION['uname'] = $email;
+        $_SESSION['UserId'] = $userid;
+        echo '<script type="text/javascript">';
+        echo 'window.location.href="userpanel/index.php";';
+        echo '</script>';
+        
         
         // insert user info into shiping table
         

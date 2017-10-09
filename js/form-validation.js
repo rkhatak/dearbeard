@@ -133,21 +133,29 @@
         
         if($('#reg-fname').val() == '' || $('#reg-fname').val() == null){
         $('.regfname').text('Please enter your First name');
+        var top = $("#reg-fname").offset().top - 200;
+        $("html,body").stop().animate({ scrollTop: top });
         check = false;
         }
         
         if($('#reg-lname').val() == '' || $('#reg-lname').val() == null){
         $('.reglname').text('Please enter your Last Name');
+        var top = $("#reg-fname").offset().top - 200;
+        $("html,body").stop().animate({ scrollTop: top });
         check = false;
         }
 		
 		if($('#reg-address').val() == '' || $('#reg-address').val() == null){
         $('.regaddress').text('Please enter your Address');
+        var top = $("#reg-address").offset().top - 200;
+        $("html,body").stop().animate({ scrollTop: top });
         check = false;
         }
 		
 		if($('#country').val() == '' || $('#country').val() == null){
         $('.regcountry').text('Please enter your Country');
+        var top = $("#country").offset().top - 200;
+        $("html,body").stop().animate({ scrollTop: top });
         check = false;
         }
 		

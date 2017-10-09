@@ -41,7 +41,7 @@
         </ol>
         
         
-        <div class="left_sec">
+        <div class="left_sec  r_left_sec">
         
         <p class="left_heading">FILTER BY</p>
         <hr class="left_hr">
@@ -53,7 +53,7 @@
         {
         ?>
         <label class="control control--checkbox first_check"><?php echo $cat_name['cat_name'];?>
-        <input type="checkbox" name="cat_name" value="<?php echo $cat_name['cat_name'];?>" checked="checked" class="category_name" >
+        <input type="checkbox" name="cat_name" value="<?php echo $cat_name['cat_name'];?>" class="category_name" >
         <div class="control__indicator"></div>
         </label>
         <?php
@@ -70,7 +70,7 @@
         {
         ?>
         <label class="control control--checkbox"><?php echo $subcat_name['sub_cat_name'];?>
-        <input type="checkbox" name="sub_cat_name" value="<?php echo $subcat_name['sub_cat_name'];?>" checked="checked" class="sub_cat_name">
+        <input type="checkbox" name="sub_cat_name" value="<?php echo $subcat_name['sub_cat_name'];?>" class="sub_cat_name">
         <div class="control__indicator"></div>
         </label>
         <?php
@@ -89,7 +89,7 @@
         <div class="list"><i class="glyphicon glyphicon-th-list gly_list"></i></div>
         
         
-        <p class="products12">There <?php echo $total_product;?> products</p>
+        <p class="products12"></p>
         <p class="sort_by">Sort By &nbsp; </p>
         
         <div class="best-form_cat" >
