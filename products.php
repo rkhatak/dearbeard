@@ -152,24 +152,20 @@
         ?>
         <div class="owl-item owl_item_first">
         <div class="item">
-        <a href="#"></a><div class="thick-hair thick_background effect"><a href="#">
+        <div class="thick-hair thick_background effect">
        <!--abc-->
-        <a href="abc">
+        
         <div class="effect_box">
         <ul class="effect_icons">
-        <a  href="product-detail.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>" data-toggle="modal" class="quick"><li><i class="fa fa-eye" aria-hidden="true"></i></li></a>
-        <li><i class="fa fa-cart-plus" aria-hidden="true"></i></li>
-        <li><i class="fa fa-clock-o" aria-hidden="true"></i></li>
-        </ul>
-        <ul class="effect_text">
-        <li><a href="product-detail.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>" >Quick View</a></li>
-        <button href="#" class="wcatwishlist" value="<?php echo $data_catproduct_win['product_id'];?>">Add to<br/> Wishlist</button>
-        <li><a  href="quick-checkout.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>">Quick Checkout</a></li>
-        </ul>
+                <li><a href="#normalModal" data-toggle="modal" class="quick"><i class="fa fa-eye" aria-hidden="true"></i><span>Quick View</span></a></li>
+                <li><i class="fa fa-cart-plus" aria-hidden="true"></i><button href="#" class="wcatwishlist" value="<?php echo $data_catproduct_win['product_id'];?>">Add to<br/> Wishlist</button></li>
+                <li><a  href="quick-checkout.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>"><i class="fa fa-clock-o" aria-hidden="true"></i><span>Quick Checkout</span></a></li>
+                </ul>
+        
         </div>
-        </a>
+        
         <!--abc-->
-        <h6><?php echo $data_catproduct_win['product_name'];?></h6>
+        <h6><a  href="product-detail.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>" data-toggle="modal" class="quick"><?php echo $data_catproduct_win['product_name'];?></a></h6>
         <div class="shampoo-image">
         <img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg'];?>" alt="<?php echo $data_catproduct_win['product_name'];?>">
         </div>
@@ -282,6 +278,45 @@
         </div>
         <!--quality-->
         <div class="clearfix"></div>
+								
+								<!--pop up-->
+                <div class="modal fade product_view" id="normalModal">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                <div class="modal-header">
+                <a href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                <h3 class="modal-title">Thick Hair Shampoo</h3>
+                </div>
+                <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 text-center">
+                        <img src="images/camera.jpg" class="modal-pic">
+                    </div>
+                    <div class="col-md-6 product_content">
+                        <h4>Product Id: <span>51526</span></h4>
+                        <div class="rating">
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            (10 reviews)
+                        </div>
+                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                        <h3 class="cost"><span class="glyphicon glyphicon-usd"></span> 75.00</h3>
+                        
+                        <div class="space-ten"></div>
+                        <div class="btn-ground">
+                            <button type="button" class="btn"><i class="fa fa-cart-plus" aria-hidden="true"></i>Add To Cart</button>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                </div>
+                <!--pop up-->
         
         <!--footer-->
         <?php

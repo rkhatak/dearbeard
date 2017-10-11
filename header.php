@@ -79,10 +79,7 @@
 	<script type="text/javascript" src="js/form-validation.js"></script>
 	</head>
 	<body>
-	<!--<div class="container">
-	<a href="#" class="btn">add to cart<span>$12</span></a>
-	</div>-->
-	<!--header-->
+		<!--header-->
 	<div id="sticky_div">
 	<header>
 	<!--top-->
@@ -166,9 +163,6 @@
 	}
 	?>
 	</ul>
-	</div><!-- /.navbar-collapse -->
-	</div><!-- /.container-fluid -->
-	</nav>
 	<ul class="icon-set">
 	<li class="search dropdown mega-dropdown">
 	<a href="#"><img src="images/search-img.svg" alt="icon" class="icon"></a>
@@ -202,29 +196,35 @@
 		{
 
 		?>
-		<div class="item-in-cart">
-		<div class="item-one">
-		<div class="left-one">	
-		<div class="product">
-		<img src="admin/product_pic/<?php echo $cart_item['product_image'];?>" alt="<?php echo $cart_item['product_name'];?>">
-			
-		<br>
-		<p><?php echo $cart_item['product_name'];?></p>
-		</div>
-		</div>
-		<div class="item-two">
-		<h4>quantity</h4>
+		<div class="item-in-cart"><h4>your cart(<?php echo $cart_item['product_quantity'];?>)</h4>
 		
-		<?php echo $cart_item['product_quantity'];?>	
 		
+		<div class="cart-pic">
+        	            <div class="row cart-section">
+        	                <div class="col-xs-6 product">
+        	                   <img src="admin/product_pic/<?php echo $cart_item['product_image'];?>" alt="<?php echo $cart_item['product_name'];?>">          
+        	                </div>
+        	                <div class="col-xs-6">
+        	                    <a href="#" class="title"><?php echo $cart_item['product_name'];?></p></a>
+        	                    <div class="button-quantity">
+		<button type="submit" class="add">+</button><input class="ex-no" value="6" type="text"><button type="submit" class="minus">-</button>
 		</div>
-		<div class="item-three">
-		<h4>Price</h4>	
-		<?php echo "$".$cart_item['product_price'];?>                  	
-		</div>
+        	                </div><p>Price</p>	
+		<?php echo "$".$cart_item['product_price'];?>
+        	            </div>
+                    </div><div class="order-subtotal">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <span class="order-total">Order Subtotal:<span><?php echo "$".$cart_item['product_price'];?></span></h6>
+                    </div>
+																			
+                    <div class="col-xs-7">
+                        <button type="submit" class="total-btn">go to cart</button>
+                    </div>
+                </div><!--row-->
+            </div>
 		
-	
-		</div>
+		
 		<?php
 	
 		}
@@ -232,7 +232,7 @@
 
 		?>
 
-	      Your Baxter of California shopping bag is empty.Shop now to find your favorite Baxter of California products.
+	      Your Dear Beard shopping bag is empty.Shop now to find your favorite Dear Beard products.
 	<?php } ?>
 	</div>
 	</li>
@@ -278,7 +278,11 @@
 	</li>
 	<?php	} ?>
 	</ul>
+	</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+	</nav>
+	
 	</div>
 	<!--menu-->
-	<div class="clearfix"></div>
+
 	</div>
