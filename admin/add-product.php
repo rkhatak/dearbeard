@@ -21,6 +21,7 @@ if(isset($_POST['add_product']))
  $product_quantity = mysqli_real_escape_string($con,$_POST['product_quantity']);
  $product_weight = mysqli_real_escape_string($con,$_POST['product_weight']);
  $product_shipping = mysqli_real_escape_string($con,$_POST['product_shipping']);
+ $product_tag=mysqli_real_escape_string($con,$_POST['product_tag']);
 
  // Check Works Limit Of Discription
  
@@ -95,7 +96,8 @@ if(isset($_POST['add_product']))
 	 'status' => $product_status,
 	 'product_SKU' => $product_quantity,
 	 'product_weight' => $product_weight,
-	 'product_shipping' => $product_shipping
+	 'product_shipping' => $product_shipping,
+	 'product_tag'=>$product_tag
 	);
 	 $tab_product = "product";
 	 $result = add_product($con,$product_info,$tab_product);
@@ -221,6 +223,11 @@ require('header-menu.php');
 		</select>
 		</div>
 		
+		</div>
+
+		<div class="form-group">
+        <label>Tag</label>                
+        <input type="text" name="product_tag" class="form-control select2 select2-hidden-accessible" style="width: 100%;" required >
 		</div>
 				
 		<div class="form-group">

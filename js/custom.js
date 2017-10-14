@@ -160,7 +160,7 @@ $(document).ready(function(){
 
     $(".cart").hover(            
         function() {
-            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("400");
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("2000");
             $(this).toggleClass('open');        
         },
         function() {
@@ -363,22 +363,47 @@ function getCardType(card_no) {
 		$(document).ready(function(){
             //-- Click on QUANTITY
             $(".minus").on("click",function(){
-                var now = $(".ex-no").val();
+                var now = $(this).prev().val();
                 if ($.isNumeric(now)){
                     if (parseInt(now) -1 > 0){ now--;}
-                    $(".ex-no").val(now);
+                    $(this).prev().val(now);
                 }else{
-                    $(".ex-no").val("1");
+                    $(this).prev().val("1");
                 }
             })            
             $(".add").on("click",function(){
-                var now = $(".ex-no").val();
+                var now = $(this).next().val();
                 if ($.isNumeric(now)){
-                    $(".ex-no").val(parseInt(now)+1);
+                    $(this).next().val(parseInt(now)+1);
                 }else{
-                    $(".ex-no").val("1");
+                    $(this).next().val("1");
                 }
-            })                        
+            })   
+            
+            // filter functionality implemented here 
+
+            $('#r_search_filter').on('change',function(){
+                var filterVal=$.trim($(this).val());
+                var queries = {};
+                $.each(document.location.search.substr(1).split('&'),function(c,q){
+                    var i = q.split('=');
+                    queries[i[0].toString()] = decodeURIComponent(i[1].toString());
+                  });
+                  
+                $.ajax({
+                    
+                        type: "POST",
+                    
+                        url: "filterSearch.php",
+                    
+                        data: { cat_value : filterVal,category:queries['category'],subcategory:queries['subcategory'],tag:queries['tag'] } 
+                    
+                        }).done(function(data){
+                    
+                        $(".window_view").html(data);
+                    
+                        });
+            })
         }) 
 /****************************quantity + -*******************************/
 

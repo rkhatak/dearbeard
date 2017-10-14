@@ -375,9 +375,34 @@ function validate_email($con,$useremail)
 
 	
 
-function searchproduct($con,$cat_name,$sub_cat_name)
+function searchproduct($con,$cat_name,$sub_cat_name,$tags)
 {
-	$sql_search= "SELECT *FROM product WHERE product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name'";
+	$condition="";
+
+	if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
+		$condition="product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name' OR product_tag = '$tags'";
+	}
+	if($cat_name!='' && $sub_cat_name!='' && $tags==''){
+		$condition="product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name!='' && $tags!=''){
+		$condition="subproduct_cat_id = '$sub_cat_name' OR product_tag = '$tags'";
+	}
+	if($cat_name!='' && $sub_cat_name=='' && $tags!=''){
+		$condition="product_cat_id = '$cat_name' OR product_tag = '$tags'";
+	}
+
+	if($cat_name!='' && $sub_cat_name=='' && $tags==''){
+		$condition="product_cat_id = '$cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name!='' && $tags==''){
+		$condition="subproduct_cat_id = '$sub_cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name=='' && $tags!=''){
+		$condition="product_tag = '$tags'";
+	}
+	
+		$sql_search= "SELECT *FROM product WHERE $condition";
 	$run_search = mysqli_query($con,$sql_search) or die(mysqli_error($con));
 	return $run_search;
 }

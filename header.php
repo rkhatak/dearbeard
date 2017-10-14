@@ -190,15 +190,15 @@
 	
 	<div class="dropdown-menu mega-dropdown-menu">
 	<?php
-		if(tottalcart($con,$session_id)>0){
-		
+		if(tottalcart($con,$session_id)>0){ ?>
+			
+		<?php
+		$totalPrice=0;	
 		while($cart_item = mysqli_fetch_array($run_cart))
 		{
 
 		?>
-		<div class="item-in-cart"><h4>your cart(<?php echo $cart_item['product_quantity'];?>)</h4>
-		
-		
+		<div class="item-in-cart">
 		<div class="cart-pic">
         	            <div class="row cart-section">
         	                <div class="col-xs-6 product">
@@ -207,27 +207,30 @@
         	                <div class="col-xs-6">
         	                    <a href="#" class="title"><?php echo $cart_item['product_name'];?></p></a>
         	                    <div class="button-quantity">
-		<button type="submit" class="add">+</button><input class="ex-no" value="6" type="text"><button type="submit" class="minus">-</button>
+								<button type="submit" class="add">+</button>
+								<input class="ex-no" value="<?php echo $cart_item['product_quantity'];?>" type="text">
+								<button type="submit" class="minus">-</button>
 		</div>
         	                </div><p>Price</p>	
+							
 		<?php echo "$".$cart_item['product_price'];?>
         	            </div>
-                    </div><div class="order-subtotal">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <span class="order-total">Order Subtotal:<span><?php echo "$".$cart_item['product_price'];?></span></h6>
                     </div>
-																			
-                    <div class="col-xs-7">
-                        <button type="submit" class="total-btn">go to cart</button>
-                    </div>
-                </div><!--row-->
-            </div>
-		
-		
 		<?php
-	
-		}
+		$totalPrice+=$cart_item['product_price'];
+		} ?>
+		<div class="order-subtotal">
+		<div class="row">
+			<div class="col-xs-5">
+				<span class="order-total">Order Subtotal:<span><?php echo "$".$totalPrice;?></span></h6>
+			</div>
+																	
+			<div class="col-xs-7">
+				<button type="submit" class="total-btn">go to cart</button>
+			</div>
+		</div><!--row-->
+	</div>
+	<?php
 	}else{
 
 		?>
