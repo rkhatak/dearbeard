@@ -7,10 +7,10 @@
 				
 		// Show All Product Reviews
 		
-		$productreviews = showreviews($con);
+		$productreviews = showreviews($con,$product_id);
 		$total_reviews = mysqli_num_rows($productreviews);
 		
-		$sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE review_status = 'Publish'";
+		$sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='".$product_id."' AND review_status = 'Publish'";
 	    $run_avrageviews = mysqli_query($con,$sql_avrageviews) or die(mysqli_error($con));
 		$review_value = mysqli_fetch_array($run_avrageviews);
 		$total_avrege = $review_value['total'];
@@ -60,7 +60,7 @@
 		<div class="washarea">
 		<h1><?php echo $productinfo['product_name'];?></h1>
 		<ul>
-		<li><input type="text" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
+		<li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
 		</ul>
 		<div class="rateit">
 		5.0 (<?php echo number_format($total_avrege,1);?>)
@@ -69,8 +69,17 @@
 		<a class="nav-link js-scroll-trigger" href="#summary">Write a Review</a>
 		</div>
 		<div class="clearfix"></div>
-		<p><?php echo $productinfo['short_description'];?></p>
-		<a href="#" class="more">more</a>
+		<p><?php echo substr($productinfo['short_description'],0,90);?></p>
+		<?php if($productinfo['product_desc'] != '' && $productinfo['product_desc'] != NULL)
+		{ ?>
+			<a href="javascript:void(0)" title="show" class="more">more</a>
+			<div class="more_content" style="display:none">
+				<?php echo $productinfo['product_desc'];?>
+			</div>
+		<?php
+		}
+		?>
+		
 		</div>
 		<div class="product-quantity">
 		quantity <button type="submit" class="addition">+</button><input type="text" class="itemno" value="1"><button type="submit" class="subtraction">-</button>
@@ -91,16 +100,20 @@
 		<!--start kit-->
 		<div class="clearfix"></div>   
 		<!--product detail-->
-		<div id="product-detail">
-		<div class="container">
-		<div class="row">
-		<h4>product details</h4>
-		<div class="product-list">
-		<?php echo $productinfo['product_desc'];?>
-		</div>
-		</div>
-		</div>
-		</div>
+		<?php if($productinfo['product_desc'] != '' && $productinfo['product_desc'] != NULL)
+		{ ?>
+			<div id="product-detail">
+				<div class="container">
+					<div class="row">
+						<h4>product details</h4>
+						<div class="product-list">
+							<?php echo $productinfo['product_desc'];?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+		
 		<!--product detail-->
 		<div class="clearfix"></div>
 		<!--summary-->
@@ -125,7 +138,7 @@
 		<input type="hidden" name="product_id" class="form-control review" value="<?php echo $productinfo['product_id'];?>" >
 		</div>
 		<div class="form-group">
-		<input type="hidden" name="user_id" class="form-control review" value="<?php if(isset($_SESSION['id'])){echo $_SESSION['id'];}?>" >
+		<input type="hidden" name="user_id" class="form-control review" value="<?php if(isset($_SESSION['UserId'])){echo $_SESSION['UserId'];}?>" >
 		</div>
 		<div class="form-group">    
 		<button type="submit" id="review"  class="review-submit">submit</button> <a href=""  class="review-cancel">cancel</a>
@@ -148,7 +161,7 @@
 		<div class="col-right">
 		<h2><?php echo number_format($total_avrege,1);?></h2>
 		<ul>
-		<li><input type="text" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
+		<li><input type="text" readonly="true" name="rating_value" id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
 		</ul>
 		<h6><?php echo $total_reviews;?> reviews</h6>
 		</div>
@@ -165,7 +178,10 @@
 		<div id="customer-review">
 		<div class="container">
 		<div class="row">
-		<h4>customer reviews</h4>
+		<?php if($total_reviews > 0){
+			echo "<h4>customer reviews</h4>";
+		}?>
+		
 		<?php
 		while($review_data = mysqli_fetch_array($productreviews))
 		{
@@ -189,7 +205,7 @@
 		<div class="col-right">
 		<h6>Ratings</h6>
 		<ul>
-		<li><input type="text" name="rating_value"  id="input-21b" value="<?php echo $review_data['review_value']; ?>" class="rating"></li>
+		<li><input type="text" name="rating_value" disabled="true" id="input-21b" value="<?php echo $review_data['review_value']; ?>" class="rating"></li>
 		</ul>
 		</div>
 		</div>

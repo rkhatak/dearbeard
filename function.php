@@ -180,9 +180,9 @@ function addreview($con,$product_review)
 
 // Show product Review
 
-function showreviews($con)
+function showreviews($con,$product_id)
 {
-	$sql_productviews= "SELECT *FROM product_review WHERE review_status = 'Publish'";
+	$sql_productviews= "SELECT *FROM product_review WHERE product_id='".$product_id."' AND review_status = 'Publish'";
 	$run_productviews = mysqli_query($con,$sql_productviews) or die(mysqli_error($con));
 	return $run_productviews;
 }

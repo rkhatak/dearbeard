@@ -480,20 +480,35 @@ if(wish_count==0){
 		// 	list_view[0].style.display="block";
 			
 		// 	}
-			wndow[0].onclick=function(){
-			list[0].style.backgroundColor="#000";
-			wndow[0].style.backgroundColor="#fff";
-			gly_window[0].style.color="#000";
-			gly_list[0].style.color="#999";
-			list_view[0].style.opacity="0";
-			window_view[0].style.opacity="1";
-			window_view[0].style.display="block";
-			list_view[0].style.display="none";
+// 			wndow[0].onclick=function(){
+// 			list[0].style.backgroundColor="#000";
+// 			wndow[0].style.backgroundColor="#fff";
+// 			gly_window[0].style.color="#000";
+// 			gly_list[0].style.color="#999";
+// 			list_view[0].style.opacity="0";
+// 			window_view[0].style.opacity="1";
+// 			window_view[0].style.display="block";
+// 			list_view[0].style.display="none";
 			
-}
+// }
 /***************************  ekta (1909-2017)  window and list******************************/			
 
 
 /*****************************************pop js*****************************************/
 
 /*****************************************pop js*****************************************/
+
+$(document).ready(function(){
+    $('.more').click(function(){
+        if($(this).attr('title') == 'show')
+        {
+            $(this).attr('title','hide');
+            $(this).text('Hide');
+            $('.more_content').slideDown();
+        }else{
+            $(this).attr('title','show');
+            $(this).text('More');
+            $('.more_content').slideUp();
+        }
+    })
+})
