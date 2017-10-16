@@ -203,7 +203,7 @@ select{-webkit-appearance:none;-moz-appearance:none;appearance:none;ms-appearanc
 
 /*****************************************form slider*******************************************/
 .shampoo-image{border:1px solid #000;}
-.form-carousel .col-right{s}
+.form-carousel .col-right{}
 .thick-hair{width:215px;min-height:270px;background:#f7f8fa;padding:10px 15px;border:1px solid #000;position:relative;}
 .thick-hair h6{font-family:"raleway",sans-serif;height: 40px;min-height: 38px;
 vertical-align: middle;display: flex;
@@ -427,7 +427,7 @@ letter-spacing: 1px;}
 .write-review .form-control{background:none;border:1px solid #000;margin-bottom:15px;height:34px;}
 .write-review .form-control.area{min-height:63px;margin-top:0;}
 .write-review h6,.review-summary h6{font-size:19.53px;color:#000;}
-.review-submit,.review-cancel{background:none;border:none;text-transform:uppercase; font: bold 19.53/23px font-size:19.53px;border:1px solid #000;border-radius:0;padding:6px 60px;
+.review-submit,.review-cancel{background:none;border:none;text-transform:uppercase; font: bold 19.53/23px;font-size:19.53px;border:1px solid #000;border-radius:0;padding:6px 60px;
   -webkit-transition: background-color 0.4s ease-out;
   -moz-transition: background-color 0.4s ease-out;
   -o-transition: background-color 0.4s ease-out;
@@ -1271,3 +1271,23 @@ padding-bottom: 13px;}
 #your-cart{ margin-top:10%}
 .reg_button{margin: 5px auto;
 text-align: center;}
+.button-quantity .addcartpage {
+    width: 30px;
+    float: left;
+    height: 30px;
+    border: none;
+    background: #000;
+    border-radius: 0;
+    color: #fff;
+    padding: 0;
+}
+.button-quantity .minuscartpage {
+    width: 30px;
+    float: right;
+    height: 30px;
+    border: none;
+    background: #000;
+    border-radius: 0;
+    color: #fff;
+    padding: 0;
+}

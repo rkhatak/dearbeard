@@ -30,6 +30,8 @@
         
         $subcategory = showsubcategory($con);
         
+         $tags = showtags($con);
+        
        ?>
         <!--sticky div-->    
         
@@ -60,9 +62,22 @@
         }
         ?>
         
+        <p class="left_heading left_sec_heading">TAGS</p>
+        <hr class="left_hr">
         
+        <?php
+        while($subcat_name = mysqli_fetch_array($tags))
+        {
+        ?>
+        <label class="control control--checkbox"><?php echo $subcat_name['product_tag'];?>
+        <input type="checkbox" name="tags" value="<?php echo $subcat_name['product_tag'];?>" class="tags">
+        <div class="control__indicator"></div>
+        </label>
+        <?php
+        }
+        ?>
         
-        <p class="left_heading left_sec_heading">HAIR TYPE</p>
+        <p class="left_heading left_third_heading">HAIR TYPE</p>
         <hr class="left_hr">
         
         <?php
@@ -96,13 +111,10 @@
         <form>
         <div class="form-group">
         
-        <select class="form_control_cat form-control drop" >
-        
+       <select class="form_control_cat form-control drop" id="r_product_filter">
         <option>Default </option>
-        <option>Default 2</option>
-        <option>Default 3</option>
-        <option>Default 4</option>
-        <option>Default 5</option>
+        <option value="l-h">Price (Low-High)</option>
+        <option value="h-l">Price (High-low)</option>
         </select>
         
         </div>

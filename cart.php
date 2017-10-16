@@ -41,14 +41,16 @@
 		<h1>your cart</h1>
 		<div class="free">Free US shipping and deluxe samples for orders over $50. Applies to subtotal after discounts.
 		Free Shipping on all domestic Auto-Replenishment orders.</div>
+                <h3>items in cart</h3>
 		<div class="col-left">
+                    
 		<?php
 		while($cart_item = mysqli_fetch_array($run_cart))
 		{
 
 		?>
 		<div class="item-in-cart">
-		<h3>items in cart</h3>
+		
 		<div class="item-one">
 		<div class="left-one">	
 		<div class="product">
@@ -63,19 +65,20 @@
 		<div class="item-two">
 		<h4>quantity</h4>
 		<div class="button-quantity">
-		<button type="submit" class="add">+</button><input type="text" class="ex-no" value="<?php echo $cart_item['product_quantity'];?>"><button type="submit" class="minus">-</button>
+		<button type="submit" class="addcartpage" data-id="<?php echo $cart_item['cart_id']?>">+</button><input id="r_cartpage_update_quantity<?php echo $cart_item['cart_id'] ?>" type="text" class="ex-no" value="<?php echo $cart_item['product_quantity'];?>"><button type="submit" class="minuscartpage" data-id="<?php echo $cart_item['cart_id']?>">-</button>
 		</div>
 		</div>
 		<div class="item-three">
-		<h4><?php echo "$".$cart_item['product_price'];?></h4>                  	
+		<h4><?php echo "$<span class='r_cartpage_price_total".$cart_item['cart_id']."'>".$cart_item['product_quantity']*$cart_item['product_price'].'</span>';?></h4>                  	
 		</div>
 		<div class="item-four">
 		<button type="submit" class="stop" value="<?php echo $cart_item['product_id'];?>" onclick='removecart(this.value)'>X</button>
 		</div>
 		<div class="clearfix"></div>
-		<button type="submit" class="update-cart" value="<?php echo $cart_item['product_id'];?>" onclick='updatecart(this.value)' >update</button>
+		<button type="submit" class="update-cart" value="<?php echo $cart_item['cart_id'];?>" onclick='updatecart(this.value)' >update</button>
 		<div class="clearfix"></div>
 		</div>
+                 <input type="hidden" class="r_cartpage_price_total_hidden<?php echo $cart_item['cart_id']?>" value="<?php echo $cart_item['product_price'];?>"/>
 		<?php
 		$item_total += ($cart_item["product_price"]*$cart_item['product_quantity']);
 		$shipping += $cart_item['product_shipping'];

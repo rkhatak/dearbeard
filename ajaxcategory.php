@@ -5,19 +5,48 @@
         require_once('admin/config.php');
         $cat_value = $_POST['cat_value'];
         $condition="";
+        $counter=0;
         if($cat_value=='all'){
             $condition.=$condition; 
         }else{
             
                        if(count($cat_value)==1){
-                            $condition.="AND product_cat_id = '$cat_value[0]'";  
+                           
+                           if(isset($cat_value[0]['category']) && $cat_value[0]['category']!=''){
+                               $condition.="AND product_cat_id = '".$cat_value[0]['category']."'";  
+                           }
+                           
+                           if(isset($cat_value[0]['subcategory']) && $cat_value[0]['subcategory']!=''){
+                               $condition.="AND subproduct_cat_id = '".$cat_value[0]['subcategory']."'";  
+                           }
+                          
+                           if(isset($cat_value[0]['tag']) && $cat_value[0]['tag']!=''){
+                               $condition.="AND product_tag = '".$cat_value[0]['tag']."'";  
+                           }
                         }else{
                                 $condition.="AND ";
                                 foreach($cat_value as $key=>$v){
                                         if(count($cat_value)==$key+1){
-                                                $condition.="product_cat_id = '$v'";    
-                                            }else{
-                                                    $condition.="product_cat_id = '$v' OR ";  
+                                                        if (isset($v['category']) && $v['category'] != '') {
+                                                        $condition .= "product_cat_id = '".$v['category']."'";
+                                                        }
+                                                        if (isset($v['subcategory']) && $v['subcategory'] != '') {
+                                                            $condition .= "subproduct_cat_id = '".$v['subcategory']."'";
+                                                        }
+                                                        if (isset($v['tag']) && $v['tag'] != '') {
+                                                            $condition .= "product_tag = '".$v['tag']."'";
+                                                        }
+                                                    }else{
+                                                    
+                                                    if (isset($v['category']) && $v['category'] != '') {
+                                                        $condition .= "product_cat_id = '".$v['category']."' AND  ";
+                                                        }
+                                                        if (isset($v['subcategory']) && $v['subcategory'] != '') {
+                                                            $condition .= "subproduct_cat_id = '".$v['subcategory'] ."' AND ";
+                                                        }
+                                                        if (isset($v['tag']) && $v['tag'] != '') {
+                                                            $condition .= "product_tag = '".$v['tag']."' AND  ";
+                                                        }
                                                 }
                                             }
                         }
@@ -48,13 +77,10 @@
         <form>
         <div class="form-group">
         
-        <select class="form_control_cat form-control drop" >
-        
+        <select class="form_control_cat form-control drop" id="r_product_filter">
         <option>Default </option>
-        <option>Default 2</option>
-        <option>Default 3</option>
-        <option>Default 4</option>
-        <option>Default 5</option>
+        <option value="l-h">Price (Low-High)</option>
+        <option value="h-l">Price (High-low)</option>
         </select>
         
         </div>
@@ -64,43 +90,12 @@
         
         </div>
         
-        
-        <div class="list_view">
-        <?php 
-        while($data_catproduct = mysqli_fetch_array($run_catproduct))
-        {
-        ?>
-        <div class="list1">
-        <div class="list_img">
-        <img src="admin/product_pic/<?php echo $data_catproduct['product_featureimg'];?>" alt="<?php echo $data_catproduct['product_name'];?>">
-        </div>
-        <div class="list_detail">
-        <button type="submit" class="listcat-cart" value="<?php echo $data_catproduct['product_id'];?>"><i class="fa fa-shopping-cart"></i></button>	
-        <h5 ><?php echo $data_catproduct['product_name'];?></h5>
-        <h3  ><?php echo "$".$data_catproduct['product_price'];?></h3>
-        
-        <ul class="ratings" >
-        <li><img src="images/grey-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        </ul>
-        
-        <p><?php echo $data_catproduct['short_description'];?></p>
-        
-        </div>
-        </div>
-        <?php
-        }
-        ?>
-        </div>
-        
         <div class="window_view">
         
         <?php 
         while($data_catproduct_win = mysqli_fetch_array($cat_product_win))
         {
+        $counter+=1;    
         ?>
         <div class="owl-item owl_item_first">
         <div class="item">
@@ -139,6 +134,10 @@
         </div>
         </div>
         <?php
+        }
+        
+        if($counter==0){
+            echo 'No product found';
         }
         ?>
         
