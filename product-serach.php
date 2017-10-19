@@ -25,11 +25,13 @@
        
         //Serach Result
        
-        if(isset($_GET['category']) || isset($_GET['subcategory']) )
+        if(isset($_GET['category']) || isset($_GET['subcategory']) || isset($_GET['tag']) )
         {
-        $cat_name = $_GET['category'];
-        $sub_cat_name = $_GET['subcategory'];
-        $search_result = searchproduct($con,$cat_name,$sub_cat_name);
+      
+        $cat_name = isset($_GET['category'])?$_GET['category']:'';
+        $sub_cat_name = isset($_GET['subcategory'])?$_GET['subcategory']:'';
+        $sub_tags = isset($_GET['tag'])?$_GET['tag']:'';
+        $search_result = searchproduct($con,$cat_name,$sub_cat_name,$sub_tags);
         $total_product = mysqli_num_rows($search_result);
         }
        
@@ -42,10 +44,6 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">Product Search</a></li>
         </ol>
-        
-        
-        
-        
      
         <div class="cat_banner"><img src="images/cat-banner.png" alt="cat-banner"></div>
         <div class="cat_section">
@@ -61,13 +59,10 @@
         <form>
         <div class="form-group">
         
-        <select class="form_control_cat form-control drop" >
-        
+        <select class="form_control_cat form-control drop"  id="r_search_filter">
         <option>Default </option>
-        <option>Default 2</option>
-        <option>Default 3</option>
-        <option>Default 4</option>
-        <option>Default 5</option>
+        <option value="l-h">Price (Low-High)</option>
+        <option value="h-l">Price (High-low)</option>
         </select>
         
         </div>

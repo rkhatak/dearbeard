@@ -14,6 +14,7 @@ $edit_uid = $_GET['edit_uid'];
 $sql_list = "SELECT *FROM product WHERE product_id = '$edit_uid' ";
 $run_list = mysqli_query($con,$sql_list) or die(mysqli_error($con));
 $pro_data = mysqli_fetch_array($run_list);
+//echo '<pre>';print_r($pro_data);die;
 if(isset($_POST['edit_product']))
 {
  $product_name = mysqli_real_escape_string($con,$_POST['product_name']);
@@ -25,6 +26,7 @@ if(isset($_POST['edit_product']))
  $product_quantity = mysqli_real_escape_string($con,$_POST['product_quantity']);
  $product_weight = mysqli_real_escape_string($con,$_POST['product_weight']);
   $product_shipping = mysqli_real_escape_string($con,$_POST['product_shipping']);
+  $product_tag=mysqli_real_escape_string($con,$_POST['product_tag']);
 // Check Works Limit Of Discription
  
 
@@ -92,9 +94,11 @@ if(isset($_POST['edit_product']))
 	  'product_featureimg' => $feature_imgname ,
 	 'product_SKU' => $product_quantity,
 	 'product_weight' => $product_weight,
-	 'product_shipping' => $product_shipping
+	 'product_shipping' => $product_shipping,
+	 'product_tag'=>$product_tag
 
 	);
+
 	 $tab_product = "product";
 	 $result = update_product($con,$product_info,$edit_uid,$tab_product);
 	 
@@ -126,8 +130,8 @@ if(isset($_POST['edit_product']))
 	 'product_featureimg' => $feature_imgname ,
 	 'product_SKU' => $product_quantity,
 	 'product_weight' => $product_weight,
-	 'product_shipping' => $product_shipping
-
+	 'product_shipping' => $product_shipping,
+	 'product_tag'=>$product_tag
 	);
   $tab_product = "product";
  $result = update_product($con,$product_info,$edit_uid,$tab_product);
@@ -245,6 +249,11 @@ require('header-menu.php');
 		</select>
 		</div>
 		
+		</div>
+
+		<div class="form-group">
+        <label>Tag</label>                
+        <input value="<?php echo $pro_data['product_tag'] ?>" type="text" name="product_tag" class="form-control select2 select2-hidden-accessible" style="width: 100%;" required >
 		</div>
 		
 		<div class="form-group">

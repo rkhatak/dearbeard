@@ -7,7 +7,5 @@ $product_Q = $_GET['itemno'];
  	 $cart = array(
 	 'product_quantity' => $product_Q
 	);
-	$result = cartupdateQuantity($con,$session_id,$product_id,$cart);
-
-
+        $result = cartupdateQuantity($con,$session_id,$product_id,$cart);
 ?>

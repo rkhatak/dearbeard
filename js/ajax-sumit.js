@@ -186,10 +186,27 @@
 $('.category_name').on('click', function() {
 	let arrCategory=[];
 	$('.control__indicator').removeClass('r_checkbox_indicator');
-	$('.r_left_sec input[type="checkbox"]:checked').each(function() { 
-		$(this).next().addClass('r_checkbox_indicator');
-		arrCategory.push($(this).val());
-    });
+        
+        
+                $('.category_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({category:$(this).val()});
+                    }
+                });
+                
+                $('.sub_cat_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({subcategory:$(this).val()});
+                    }
+                });
+                $('.tags').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({tag:$(this).val()});
+                    }
+                });
 	var cat_value =arrCategory;
 	if(cat_value.length==0){
 		cat_value="all";	
@@ -209,6 +226,52 @@ $('.category_name').on('click', function() {
 	});
 
 	});
+        
+        
+        $('.tags').on('click', function() {
+	let arrCategory=[];
+	$('.control__indicator').removeClass('r_checkbox_indicator');
+        
+        
+                $('.category_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({category:$(this).val()});
+                    }
+                });
+                
+                $('.sub_cat_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({subcategory:$(this).val()});
+                    }
+                });
+                $('.tags').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({tag:$(this).val()});
+                    }
+                });
+        
+	var cat_value =arrCategory;
+        if(cat_value.length==0){
+		cat_value="all";	
+	}
+	$.ajax({
+
+	type: "POST",
+
+	url: "ajaxTags.php",
+
+	data: { cat_value : cat_value } 
+
+	}).done(function(data){
+
+	$(".cat_section").html(data);
+
+	});
+
+	});
 	
 	
 	// Sub Category Show List
@@ -218,11 +281,28 @@ $('.category_name').on('click', function() {
 	$('.sub_cat_name').on('click', function() {
 		//alert('test');
 		let arrCategory=[];
-		$('.control__indicator').removeClass('r_checkbox_indicator');
-		$('.r_left_sec input[type="checkbox"]:checked').each(function() { 
-			$(this).next().addClass('r_checkbox_indicator');
-			arrCategory.push($(this).val());
-		});
+	$('.control__indicator').removeClass('r_checkbox_indicator');
+        
+        
+                $('.category_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({category:$(this).val()});
+                    }
+                });
+                
+                $('.sub_cat_name').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({subcategory:$(this).val()});
+                    }
+                });
+                $('.tags').each(function () {
+                    if($(this).is(':checked')){
+                        $(this).next().addClass('r_checkbox_indicator');
+                        arrCategory.push({tag:$(this).val()});
+                    }
+                });
 		var subcat_value =arrCategory;
 		if(subcat_value.length==0){
 			subcat_value="all";	
@@ -263,8 +343,8 @@ $('.category_name').on('click', function() {
 	});
 	}
 	function updatecart(product_id) {
-	var itemno = $('.ex-no').val();		
-	$.ajax({
+	var itemno = $('#r_cartpage_update_quantity'+product_id).val();	
+        $.ajax({
 	type: 'GET',
 	url: 'update-cart.php',
 	data: { product_id: product_id , itemno: itemno  },

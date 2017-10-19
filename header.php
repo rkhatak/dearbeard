@@ -190,15 +190,15 @@
 	
 	<div class="dropdown-menu mega-dropdown-menu">
 	<?php
-		if(tottalcart($con,$session_id)>0){
-		
+		if(tottalcart($con,$session_id)>0){ ?>
+			
+		<?php
+		$totalPrice=0;	
 		while($cart_item = mysqli_fetch_array($run_cart))
 		{
-
+                    
 		?>
-		<div class="item-in-cart"><h4>your cart(<?php echo $cart_item['product_quantity'];?>)</h4>
-		
-		
+		<div class="item-in-cart">
 		<div class="cart-pic">
         	            <div class="row cart-section">
         	                <div class="col-xs-6 product">
@@ -207,34 +207,47 @@
         	                <div class="col-xs-6">
         	                    <a href="#" class="title"><?php echo $cart_item['product_name'];?></p></a>
         	                    <div class="button-quantity">
-		<button type="submit" class="add">+</button><input class="ex-no" value="6" type="text"><button type="submit" class="minus">-</button>
-		</div>
+								<button type="submit" class="add" data-id="<?php echo $cart_item['cart_id']?>">+</button>
+								<input class="ex-no" id="r_cart_update_quantity<?php echo $cart_item['cart_id'] ?>" value="<?php echo $cart_item['product_quantity'];?>" type="text">
+								<button type="submit" class="minus" data-id="<?php echo $cart_item['cart_id']?>">-</button>
+                                     </div>
         	                </div><p>Price</p>	
-		<?php echo "$".$cart_item['product_price'];?>
+                                <input type="hidden" class="r_cart_price_total_hidden<?php echo $cart_item['cart_id']?>" value="<?php echo $cart_item['product_price'];?>"/>					
+		<?php echo "$<span class='r_cart_price_total".$cart_item['cart_id']."'>".$cart_item['product_quantity']*$cart_item['product_price'].'</span>'?>
         	            </div>
-                    </div><div class="order-subtotal">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <span class="order-total">Order Subtotal:<span><?php echo "$".$cart_item['product_price'];?></span></h6>
-                    </div>
-																			
-                    <div class="col-xs-7">
-                        <button type="submit" class="total-btn">go to cart</button>
-                    </div>
-                </div><!--row-->
-            </div>
+                </div>
 		
-		
-		<?php
-	
-		}
-	}else{
+	</div>
+            <input type="hidden" class="r_product_ids" value="<?php echo $cart_item['cart_id'] ?>"/>
+	<?php
+        $totalPrice+=$cart_item['product_quantity']*$cart_item['product_price'];
+                } ?>
+                
+		<div class="order-subtotal">
+                <div class="col-xs-13">
+				<button type="submit" class="total-btn" id="r_update_cart_button">Update Cart</button>
+			</div>    
+		<div class="row">
+			<div class="col-xs-5">
+				<span class="order-total">Order Subtotal:<span><?php echo "$<span class='r_order_total'>".$totalPrice.'</span>';?></span></h6>
+			</div>
+																	
+			<div class="col-xs-7">
+                            <a href="checkout.php">
+				<button type="submit" class="total-btn">go to cart</button>
+                                </a>
+			</div>
+		</div><!--row-->
+	</div>
+                
+               <?php }else{
 
 		?>
 
 	      Your Dear Beard shopping bag is empty.Shop now to find your favorite Dear Beard products.
+		  </div>
 	<?php } ?>
-	</div>
+	
 	</li>
 	<?php
 	if(isset($_SESSION['uname']) && $_SESSION['uname']!=''){ ?>

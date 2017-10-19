@@ -1,13 +1,13 @@
 		<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="js/ajax-sumit.js"></script>
-		<script src="js/custom.js"></script> -->
+	<script src="js/custom.js"></script> -->
 		<?php
-		require_once('admin/config.php');
-        $cat_value = $_POST['subcat_value'];
+        require_once('admin/config.php');
+        $cat_value = $_POST['cat_value'];
         
         $condition="";
-         $counter=0;
-       if($cat_value=='all'){
+        $counter=0;
+        if($cat_value=='all'){
             $condition.=$condition; 
         }else{
             
@@ -53,11 +53,9 @@
                         }
             
         }
+        // List View
 
-
-		// List View
-
-		$sql_catproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
+	        $sql_catproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
 		$run_catproduct = mysqli_query($con,$sql_catproduct) or die(mysqli_error($con));
 		$total_productlist = mysqli_num_rows($run_catproduct);
 
@@ -80,7 +78,7 @@
         <form>
         <div class="form-group">
         
-       <select class="form_control_cat form-control drop" id="r_product_filter">
+        <select class="form_control_cat form-control drop" id="r_product_filter">
         <option>Default </option>
         <option value="l-h">Price (Low-High)</option>
         <option value="h-l">Price (High-low)</option>
@@ -93,45 +91,12 @@
         
         </div>
         
-        
-        <div class="list_view">
-        <?php 
-        while($data_catproduct = mysqli_fetch_array($run_catproduct))
-        {
-            $counter+=1;  
-        ?>
-        <div class="list1">
-        <div class="list_img">
-        <img src="admin/product_pic/<?php echo $data_catproduct['product_featureimg'];?>" alt="<?php echo $data_catproduct['product_name'];?>">
-        </div>
-        <div class="list_detail">
-        <button type="submit" class="listcat-cart" value="<?php echo $data_catproduct['product_id'];?>"><i class="fa fa-shopping-cart"></i></button>	
-        <h5 ><?php echo $data_catproduct['product_name'];?></h5>
-        <h3  ><?php echo "$".$data_catproduct['product_price'];?></h3>
-        
-        <ul class="ratings" >
-        <li><img src="images/grey-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        </ul>
-        
-        <p><?php echo $data_catproduct['short_description'];?></p>
-        
-        </div>
-        </div>
-        <?php
-        }
-        ?>
-        </div>
-        
         <div class="window_view">
         
         <?php 
         while($data_catproduct_win = mysqli_fetch_array($cat_product_win))
         {
-            $counter+=1;  
+        $counter+=1;    
         ?>
         <div class="owl-item owl_item_first">
         <div class="item">
@@ -171,7 +136,8 @@
         </div>
         <?php
         }
-         if($counter==0){
+        
+        if($counter==0){
             echo 'No product found';
         }
         ?>

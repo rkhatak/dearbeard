@@ -215,7 +215,7 @@ function cartupdate($con,$session_id,$product_id,$cart)
 	{
 	 $sql = $sql." $key = '".$value."' , " ;	 
 	}
-	$sql_main = rtrim($sql," ,")." WHERE product_id = '$product_id' AND session_id = '$session_id'";
+	echo $sql_main = rtrim($sql," ,")." WHERE product_id = '$product_id' AND session_id = '$session_id'";
     $run = mysqli_query($con,$sql_main) or die(mysqli_error($con));
 	return $run;
 }
@@ -233,11 +233,10 @@ function showcart($con,$session_id)
 
 function tottalcart($con,$session_id)
 {
-	$sql_tottalcart= "SELECT *FROM cart WHERE session_id = '$session_id'";
+	$sql_tottalcart= "SELECT sum(product_quantity)as quantity FROM cart WHERE session_id = '$session_id'";
 	$run_tottalcart = mysqli_query($con,$sql_tottalcart) or die(mysqli_error($con));
-	$tottal = mysqli_num_rows($run_tottalcart);
-	
-	return $tottal;
+        $tottal = mysqli_fetch_array($run_tottalcart);
+	return $tottal['quantity'];
 }
 
 function registration($con,$user_info)
@@ -339,6 +338,14 @@ $run_sub = mysqli_query($con,$sql_sub) or die(mysqli_error($con)) ;
 return $run_sub;
 }
 
+function showtags($con)
+{
+$sql_sub = "SELECT DISTINCT product_tag  FROM product";	
+$run_sub = mysqli_query($con,$sql_sub) or die(mysqli_error($con)) ;
+
+return $run_sub;
+}
+
 
 
 function countproduct($con,$cat_name)
@@ -375,9 +382,34 @@ function validate_email($con,$useremail)
 
 	
 
-function searchproduct($con,$cat_name,$sub_cat_name)
+function searchproduct($con,$cat_name,$sub_cat_name,$tags)
 {
-	$sql_search= "SELECT *FROM product WHERE product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name'";
+	$condition="";
+
+	if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
+		$condition="product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name' OR product_tag = '$tags'";
+	}
+	if($cat_name!='' && $sub_cat_name!='' && $tags==''){
+		$condition="product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name!='' && $tags!=''){
+		$condition="subproduct_cat_id = '$sub_cat_name' OR product_tag = '$tags'";
+	}
+	if($cat_name!='' && $sub_cat_name=='' && $tags!=''){
+		$condition="product_cat_id = '$cat_name' OR product_tag = '$tags'";
+	}
+
+	if($cat_name!='' && $sub_cat_name=='' && $tags==''){
+		$condition="product_cat_id = '$cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name!='' && $tags==''){
+		$condition="subproduct_cat_id = '$sub_cat_name'";
+	}
+	if($cat_name=='' && $sub_cat_name=='' && $tags!=''){
+		$condition="product_tag = '$tags'";
+	}
+	
+		$sql_search= "SELECT *FROM product WHERE $condition";
 	$run_search = mysqli_query($con,$sql_search) or die(mysqli_error($con));
 	return $run_search;
 }
@@ -393,6 +425,18 @@ function contactUs($con,$data=''){
 
 }
 
+function cartupdateQuantity($con,$session_id,$product_id,$cart)
+{
+	
+	$sql = "UPDATE cart SET" ;
+	foreach($cart as $key=>$value)
+	{
+	 $sql = $sql." $key = '".$value."' , " ;	 
+	}
+	echo $sql_main = rtrim($sql," ,")." WHERE cart_id = '$product_id'";
+    $run = mysqli_query($con,$sql_main) or die(mysqli_error($con));
+	return $run;
+}
 
 
 ?>

@@ -60,6 +60,9 @@
         
         $sql_listsub = "SELECT DISTINCT sub_cat_name FROM category";
         $run_listsub = mysqli_query($con,$sql_listsub) or die(mysqli_error($con));
+
+        $sql_tags = "SELECT DISTINCT product_tag FROM product";
+        $run_tags = mysqli_query($con,$sql_tags) or die(mysqli_error($con));
         
         ?>
         
@@ -145,6 +148,24 @@
         ?>
         </select>
         </div>
+        <div class="form-group">
+        <select name="tag" class="form-control drop">
+        <option value="">TAGS</option>
+        <?php
+        while($data_list = mysqli_fetch_array($run_tags))
+        {
+         if($data_list['product_tag']!=''){
+
+             ?>
+        <option value="<?php echo $data_list['product_tag'];?>"><?php echo $data_list['product_tag'];?></option>
+        <?php
+            }   
+        }
+        ?>
+        
+        </select>
+        </div>
+
         <button type="submit"  class="form-submit">search product</button>
         </form>
         </div>
