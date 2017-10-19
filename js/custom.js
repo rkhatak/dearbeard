@@ -181,6 +181,8 @@ $(document).ready(function(){
         var error=true;
         if(validateName==''){
             $('.name_regfname').html('Please enter name');
+            $('input[name=name]').parent().addClass('has-error');
+            
             document.forms["r_contact_name"]["name"].focus();
             error=false;
             return false;
