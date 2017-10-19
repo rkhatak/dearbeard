@@ -167,6 +167,28 @@ $(document).ready(function(){
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("300000");
             $(this).toggleClass('open');       
         }
+								
+								
+								
+								
+								
+    );
+				
+				
+				 $(".search").hover(            
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("2000");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("300000");
+            $(this).toggleClass('open');       
+        }
+								
+								
+								
+								
+								
     );
 
     //Outsource code
