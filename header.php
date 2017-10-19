@@ -174,7 +174,7 @@
 	<input type="text" class="form-control" placeholder="SEARCH">
 	</div>
 	<div class="form-group">
-	<button type="submit" class="search-button"></button>
+	<button type="submit" class="btn ">Button</button>
 	</div>
 	</form>
 	</div>	
@@ -201,19 +201,19 @@
 		<div class="item-in-cart">
 		<div class="cart-pic">
         	            <div class="row cart-section">
-        	                <div class="col-xs-6 product">
+        	                <div class="col-xs-4 product">
         	                   <img src="admin/product_pic/<?php echo $cart_item['product_image'];?>" alt="<?php echo $cart_item['product_name'];?>">          
         	                </div>
-        	                <div class="col-xs-6">
+        	                <div class="col-xs-8">
         	                    <a href="#" class="title"><?php echo $cart_item['product_name'];?></p></a>
         	                    <div class="button-quantity">
 								<button type="submit" class="add" data-id="<?php echo $cart_item['cart_id']?>">+</button>
 								<input class="ex-no" id="r_cart_update_quantity<?php echo $cart_item['cart_id'] ?>" value="<?php echo $cart_item['product_quantity'];?>" type="text">
 								<button type="submit" class="minus" data-id="<?php echo $cart_item['cart_id']?>">-</button>
-                                     </div>
-        	                </div><p>Price</p>	
+                                     </div><div class="cart_price"><p>Price</p>	
                                 <input type="hidden" class="r_cart_price_total_hidden<?php echo $cart_item['cart_id']?>" value="<?php echo $cart_item['product_price'];?>"/>					
 		<?php echo "$<span class='r_cart_price_total".$cart_item['cart_id']."'>".$cart_item['product_quantity']*$cart_item['product_price'].'</span>'?>
+        	       </div>           </div>
         	            </div>
                 </div>
 		
@@ -224,19 +224,19 @@
                 } ?>
                 
 		<div class="order-subtotal">
-                <div class="col-xs-13">
-				<button type="submit" class="total-btn" id="r_update_cart_button">Update Cart</button>
-			</div>    
+               
 		<div class="row">
-			<div class="col-xs-5">
-				<span class="order-total">Order Subtotal:<span><?php echo "$<span class='r_order_total'>".$totalPrice.'</span>';?></span></h6>
+			<div class="col-xs-12" style="text-align:center">
+				<span class="order-total">Order Subtotal: <span><?php echo "$<span class='r_order_total'>".$totalPrice.'</span>';?></span></h6>
 			</div>
 																	
-			<div class="col-xs-7">
+			<div class="col-xs-6">
                             <a href="checkout.php">
 				<button type="submit" class="total-btn">go to cart</button>
                                 </a>
-			</div>
+			</div> <div class="col-xs-6">
+				<button type="submit" class="total-btn" id="r_update_cart_button">Update Cart</button>
+			</div>    
 		</div><!--row-->
 	</div>
                 
