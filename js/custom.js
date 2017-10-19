@@ -167,11 +167,33 @@ $(document).ready(function(){
             $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("300000");
             $(this).toggleClass('open');       
         }
+								
+								
+								
+								
+								
+    );
+				
+				
+				 $(".search").hover(            
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideDown("2000");
+            $(this).toggleClass('open');        
+        },
+        function() {
+            $('.dropdown-menu', this).not('.in .dropdown-menu').stop(true,true).slideUp("300000");
+            $(this).toggleClass('open');       
+        }
+								
+								
+								
+								
+								
     );
 
     //Outsource code
 
-
+  
     $('#r_contact_form_submit').on('click',function(){
         $('.regfname').html('');
         var validateName=$.trim(document.forms["r_contact_name"]["name"].value);
@@ -219,6 +241,18 @@ $(document).ready(function(){
             error=false;
             return false;
         }
+
+        /*
+        * Google captcha validate code
+        */
+        var v = grecaptcha.getResponse();
+        if(v.length == 0)
+        { 
+            $('.captcha_error').text("You can't leave Captcha Code empty");
+            error=false;
+            return false;
+        }
+        
 
         if(error){
             var jqxhr = $.post( "./contact-form.php",$('#r_contact_id').serialize(), function(data) {
