@@ -22,13 +22,13 @@ $product_review = array(
 $result = addreview($con,$product_review);
 if($result == TRUE)
 {
-	echo "Review Add Successfully";
+	echo "TRUE";
 }else{
-	echo "Try Again";
+	echo "ERROR";
 }
 }
 else{
-	echo "Please Login For Add Review";
+	echo "FALSE";
 }
 }
 
