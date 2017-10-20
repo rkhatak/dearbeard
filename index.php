@@ -186,7 +186,7 @@
                 </ul>
         
         </div>
-        <h6><?php echo $data_product['product_name'];?></h6>
+        <h6><a  href="product-detail.php?product_id=<?php echo $data_product['product_id']; ?>" data-toggle="modal" class="quick"><?php echo $data_product['product_name'];?></a></h6>
         <div class="shampoo-image">
         <img src="admin/product_pic/<?php echo $data_product['product_featureimg'];?>" alt="<?php echo $data_product['product_name'];?>">
         </div>

@@ -120,7 +120,7 @@ require('header-menu.php');
     <div class="pull-right hidden-xs">
       
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Sumit Panchal</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2016 <a href="">Web Innovationh Hub</a>.</strong> All rights
     reserved.
   </footer>
 

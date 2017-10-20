@@ -70,11 +70,11 @@
 		
         <div class="sort_section">
         <div class="window"><i class="glyphicon glyphicon-th-large gly_window" ></i></div>
-        <div class="list"><i class="glyphicon glyphicon-th-list gly_list"></i></div>
-        <p class="products12">There <?php echo $total_productlist;?> products</p>
-        <p class="sort_by">Sort By &nbsp; </p>
         
-        <div class="best-form_cat" >
+        <p class="products12">There <?php echo $total_productlist;?> products</p>
+      
+        
+        <div class="best-form_cat" >  <p class="sort_by">Sort By &nbsp; </p>
         <form>
         <div class="form-group">
         
