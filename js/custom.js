@@ -524,8 +524,6 @@ function getCardType(card_no) {
                     }
                 });
                 
-        
-                  
                $.ajax({
                     
                         type: "POST",

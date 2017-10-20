@@ -1,8 +1,7 @@
 <?php
         require_once('admin/config.php');
-        $cat_value = $_POST['cat_value'];
-        $categoryFilter=$_POST['categoryFilter'];
-        
+        $cat_value = isset($_POST['cat_value'])?$_POST['cat_value']:'';
+        $categoryFilter=isset($_POST['categoryFilter'])?$_POST['categoryFilter']:'';
         $condition="";
         $counter=0;
         if( $cat_value=='l-h'){
@@ -47,6 +46,7 @@
                         }else{
                                 $condition1="";
                                 $condition1.="AND ";
+                                if(count($categoryFilter)>0){
                                 foreach($categoryFilter as $key=>$v){
                                         if(count($categoryFilter)==$key+1){
                                                         
@@ -106,7 +106,7 @@
                                 $condition1.=" product_tag = '$tags'  and ";
                             }
                                                 }
-                                            }
+                        }}
                         }
         
         $condition= $condition1.$condition;     
