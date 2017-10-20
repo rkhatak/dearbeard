@@ -92,7 +92,7 @@
 		<button type="submit" id="addto-cart" class="add-cart" value="<?php echo $productinfo['product_id'];?>" >add to cart</button><button type="submit" id="btnwishlist" class="wishlist" value="<?php echo $productinfo['product_id'];?>" >add to wishlist</button>
 		</div>
 		<button type="submit" class="auto-replenish">add the auto-replenishment program</button>
-		<div class="refer"><a href="#">REFER FRIENDS, GET 20% OFF ></a></div>
+		<!--<div class="refer"><a href="#">REFER FRIENDS, GET 20% OFF ></a></div>-->
 		</div>
 		</div>
 		</div>

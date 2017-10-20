@@ -1,4 +1,4 @@
-<?php
+        <?php
         // Call header
         
         require_once('header.php');
@@ -49,13 +49,13 @@
         <div class="cat_section">
         <div class="sort_section">
         <div class="window"><i class="glyphicon glyphicon-th-large gly_window" ></i></div>
-        <div class="list"><i class="glyphicon glyphicon-th-list gly_list"></i></div>
+       
         
         
         <p class="products12">There <?php echo $total_product;?> products</p>
-        <p class="sort_by">Sort By &nbsp; </p>
+   
         
-        <div class="best-form_cat" >
+        <div class="best-form_cat" >     <p class="sort_by">Sort By &nbsp; </p>
         <form>
         <div class="form-group">
         
@@ -102,7 +102,7 @@
         
         
         </div>
-        <h6><?php echo $data_catproduct_win['product_name'];?></h6>
+        <h6><a href="product-detail.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>" data-toggle="modal" class="quick"><?php echo $data_catproduct_win['product_name'];?></a></h6>
         <div class="shampoo-image">
         <img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg'];?>" alt="<?php echo $data_catproduct_win['product_name'];?>">
         </div>
