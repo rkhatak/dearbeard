@@ -255,9 +255,9 @@
 	<a href="userpanel/index.php"><img src="images/person-icon.svg" alt="icon" class="icon"></a>
 	
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>				
-	<div class="dropdown-menu mega-dropdown-menu" style="box-shadow:none; padding:10px">
+	<div class="dropdown-menu mega-dropdown-menu afterlogin">
 <span>Hi <?php echo $_SESSION['uname'];?></span>
-	<br>
+
 	<ul><li>
 	<a href="logout.php">Log out</a></li></ul>
 	
