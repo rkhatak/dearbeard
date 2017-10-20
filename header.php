@@ -251,11 +251,18 @@
 	</li>
 	<?php
 	if(isset($_SESSION['uname']) && $_SESSION['uname']!=''){ ?>
-	<li>
+	<li class="cart">
 	<a href="userpanel/index.php"><img src="images/person-icon.svg" alt="icon" class="icon"></a>
-	Hi <?php echo $_SESSION['uname'];?>
+	
+	<a href="#" class="dropdown-toggle" data-toggle="dropdown"></a>				
+	<div class="dropdown-menu mega-dropdown-menu" style="box-shadow:none; padding:10px">
+<span>Hi <?php echo $_SESSION['uname'];?></span>
 	<br>
-	<a href="logout.php">Log out</a>
+	<ul><li>
+	<a href="logout.php">Log out</a></li></ul>
+	
+	</div>	
+	
 	</li>
 	<?php }else{ ?>	
 

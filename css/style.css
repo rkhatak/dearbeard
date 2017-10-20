@@ -296,8 +296,10 @@ padding: 21px 0 21px 0;
 font-weight: 400;
 letter-spacing: 1px;}
 footer .col-left ul li{padding:5px 0;}
-footer .col-left ul li a{color:#000;font-weight:300; letter-spacing:1px;text-transform:uppercase;}
-footer .col-left ul li a:hover{ text-decoration:underline; color:#9d9d9d}
+footer .col-left ul li a{color:#000;font-weight:300;border-bottom: 1px solid transparent;
+    -webkit-transition: border-color .25s ease-out,opacity .25s ease-out;
+    transition: border-color .25s ease-out,opacity .25s ease-out; letter-spacing:1px;text-transform:uppercase;}
+footer .col-left ul li a:hover{ color:#9d9d9d;    border-color: #000;}
 .connect li{display:inline-block;}
 .social-icon li{background:#000;display:inline-block;padding:2px 0;}
 .social-icon  li a{font-size:12px;padding:3px 10px;color:#fff!important;text-transform:capitalize;}
