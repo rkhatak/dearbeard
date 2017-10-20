@@ -889,7 +889,7 @@ div.effect div.effect_box{max-width: 300px;
     box-sizing: border-box;}
 .thick_background:hover .effect_box{background-color:rgba(0,0,0,0.8);opacity:1;}
 .thick_background .btn{width:100%;margin-top:10px;z-index:0;overflow:hidden;}
-.thick_background .btn span{margin-left:16%;}
+
 .effect_icons li i{color:rgba(0,0,0,0.8);display:inline-block;width:30px;background-color:#fff;padding:5px 7px 7px 7px;-webkit-transition: all 0.5s ease-out;-moz-transition: all 0.5s ease-out;-o-transition:all 0.5s ease-out;transition:all 0.5s ease-out;cursor: pointer;}
 .effect_icons li a span{ display:block; text-align:center; color:#fff; font-size:10px}
 .effect_icons li .wcatwishlist{ display:block; text-align:center; color:#fff; font-size:10px}
@@ -911,7 +911,7 @@ margin-left: 0px;}
  .cat-main{padding-top:11%;} 
 .left_sec{height:auto;width:23.8%;float:left;display:block;}
 .right_sec{height:auto;width:73.4%;float:left;margin-left:30px;margin-top: 48px;}
-.left_heading{ font-family: 'Roboto',sans-serif;    font-weight: 300;    font-size: 15px;    padding: 15px 0px 15px 0px;color:#000;margin:0;}
+.left_heading{ font-family: 'Roboto',sans-serif; text-transform:uppercase;    font-weight: 300;    font-size: 15px;    padding: 15px 0px 15px 0px;color:#000;margin:0;}
 .gly_clear{color:#fff;font-size:13px;margin-right:15px;}
 .left_sec_heading{margin-top:20px;}
 .left_hr{margin: 0;border: 1px solid #000;}
@@ -934,7 +934,8 @@ margin-left: 0px;}
 .cat_banner_img{width:100%;margin:0px 0px 15px 0px;background-image:url(../images/cat-banner.png) ;height:250px;background-repeat:no-repeat;background-size:contain;}
 .sort_section{height:50px;width:100%;background-color:#000;margin-bottom:27px;}
 /***jump***/
-.window{height:36px;margin-left:8px;width:36px;display:inline-block;background-color:#fff;border:1px solid #fff;cursor:pointer;transition:all 1s;}
+.window{height:36px;float: left;
+margin-top: 7px;margin-left:8px;width:36px;display:inline-block;background-color:#fff;border:1px solid #fff;cursor:pointer;transition:all 1s;}
 .gly_window{color:#000;font-size:20px;margin-top:6px;margin-left:0px;cursor:pointer;transition:all 1s;}
 .list{height:36px;margin-left:6px;width:36px;margin-top:7px;display:inline-block;background-color:#000;border:1px solid #fff;cursor:pointer;transition:all 1s;}
 .gly_list{color:#999;font-size:20px;margin-top:5px;margin-left:0;cursor:pointer;transition:all 1s;}	
@@ -950,8 +951,9 @@ margin-left: 0px;}
 .cart_btn{position:absolute;right:20px;top:5px;font-size: 22px;color: #000;padding: 0px 5px 0px 5px;transition:all 0.5s;}
 /***jump***/
 .products12{display:inline-block;color:#fff;font-family:'Roboto',sans-serif;padding-left: 15px;font-weight: 500;font-size:14px;width:47%;text-align: left;}
-.sort_by{display:inline-block;color:#fff;font-family:'Roboto',sans-serif;padding-left:0;font-weight: 400;font-size: 14px;}
+.sort_by{ float:left; line-height:50px;color:#fff;font-family:'Roboto',sans-serif;padding-left:0;font-weight: 400;font-size: 14px;}
 .form_control_cat{background-color:#fff ;height:35px ;}
+.best-form_cat form{ float:left}
 .window_view .effect_box{min-height:188px ;width:100%;background-color:rgba(0,0,0,0.9);position:absolute;opacity:0;z-index:1; left:0;top:0;transition: opacity linear 500ms;}
 .window_view .thick_background{background-color:#fff;width:220px;min-height:340px;text-align:center;margin:auto;position:relative;}
 .window_view .thick_background:hover .effect_box{background-color:rgba(0,0,0,0.8);opacity:1;}
@@ -1078,7 +1080,10 @@ letter-spacing: 1.5px;}
 
 
 /***************************************************27-09-2017***************************************************************/
-.best-form_cat{width:32.8%;display:inline-block;float:right;margin-right:5px;}
+.best-form_cat{width: 27.8%;
+display: inline-block;
+float: right;
+margin-right: 5px;}
 .listcat-cart{position: absolute;right:100px;top:5px;font-size: 22px;color: #000;padding: 0px 5px 0px 5px;transition: all 0.5s;border-radius:0;background:none;border:1px solid #000;}
 .listcat-cart:hover{background:#000;color:#fff;}
 .left_sec .left_hr{border: 1px solid #000;margin-bottom: 15px;}
@@ -1306,3 +1311,8 @@ margin-left: 6%;
 width: 53%;
 display: inline-block;
 float: left;}
+.afterlogin{ box-shadow:none; padding:10px; border-radius:0px; border:1px solid #000}
+.afterlogin span{ line-height:30px; display:block;color:#606060; font-size:12px; font-weight:200; letter-spacing:0.8px;}
+
+.afterlogin  ul li a{ text-transform:uppercase; font-weight:300; letter-spacing:0.5px;line-height:30px; padding-top:10px;}
+.afterlogin  ul li a:hover{ text-transform:uppercase;    font-weight:300; letter-spacing:0.5px;line-height:30px; padding-top:10px;}
