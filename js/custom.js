@@ -485,7 +485,7 @@ function getCardType(card_no) {
                 var queries = {};
                 $.each(document.location.search.substr(1).split('&'),function(c,q){
                     var i = q.split('=');
-                    queries[i[0].toString()] = decodeURIComponent(i[1].toString());
+                    queries[i[0].toString()] = decodeURIComponent(i[1].replace(/\+/g, " ").toString());
                   });
                   
                 $.ajax({

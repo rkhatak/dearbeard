@@ -384,7 +384,7 @@ function validate_email($con,$useremail)
 
 function searchproduct($con,$cat_name,$sub_cat_name,$tags)
 {
-	$condition="";
+	$condition="1";
 
 	if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
 		$condition="product_cat_id = '$cat_name' OR subproduct_cat_id = '$sub_cat_name' OR product_tag = '$tags'";
@@ -409,7 +409,7 @@ function searchproduct($con,$cat_name,$sub_cat_name,$tags)
 		$condition="product_tag = '$tags'";
 	}
 	
-		$sql_search= "SELECT *FROM product WHERE $condition";
+	$sql_search= "SELECT *FROM product WHERE $condition";
 	$run_search = mysqli_query($con,$sql_search) or die(mysqli_error($con));
 	return $run_search;
 }
