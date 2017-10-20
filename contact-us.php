@@ -100,6 +100,10 @@ require('header.php');
     				</div>
 					
     			</div>
+				<div class="row">
+					<div class="g-recaptcha" data-callback="captchaValidated" data-sitekey="6LekCTUUAAAAAAS3hfBXi7Eixwo2__o2D06sqvKh"></div>
+					<div class="captcha_error" style="color:red"></div>
+				</div>
     			<div class="row">
                 	<div class="col-sm-12 form-group">
     					<input type="button" value="SEND" class="send" id="r_contact_form_submit">

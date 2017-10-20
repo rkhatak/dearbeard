@@ -388,11 +388,11 @@ function getCardType(card_no) {
             //-- Click on QUANTITY
             $(".minus").on("click",function(){
                 var now = $(this).prev().val();
-                let attId=$(this).attr('data-id');
-                let totalPrice=$('.r_order_total').html();
-                let price=$('.r_cart_price_total_hidden'+attId).val();
+                var attId=$(this).attr('data-id');
+                var totalPrice=$('.r_order_total').html();
+                var price=$('.r_cart_price_total_hidden'+attId).val();
                 if ($.isNumeric(now)){
-                    let quantity=parseInt(now)-1;
+                    var quantity=parseInt(now)-1;
                     if (parseInt(now) -1 > 0){ now--;}
                     $(this).prev().val(now);
                     if(quantity>0){

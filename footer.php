@@ -105,5 +105,6 @@
     <script src="js/scrolling-nav.js"></script>
     <!--custom js-->
     <script src="js/custom.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
 		</body>
 		</html>

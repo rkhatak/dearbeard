@@ -138,7 +138,18 @@
 	url: formURL,
 	data: postData,
 	success: function(response) {
-	alert(response);
+		switch(response){
+			case "TRUE":
+				alert("Review added Successfully");
+				break;
+			case "ERROR":
+				alert("Some error occured while adding review, Plesse try again");
+				break;
+			case "FALSE":
+				alert("Please login to add review");
+				window.location.href="login.php";
+				break;
+		}
 	}
 	});
 	});
