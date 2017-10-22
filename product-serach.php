@@ -1,4 +1,4 @@
-        <?php
+<?php
         // Call header
         
         require_once('header.php');

@@ -192,8 +192,8 @@ $(document).ready(function(){
     );
 
     //Outsource code
-    
-  
+
+
     $('#r_contact_form_submit').on('click',function(){
         $('.regfname').html('');
         var validateName=$.trim(document.forms["r_contact_name"]["name"].value);
@@ -242,18 +242,6 @@ $(document).ready(function(){
             return false;
         }
 
-        /*
-        * Google captcha validate code
-        */
-        var v = grecaptcha.getResponse();
-        if(v.length == 0)
-        { 
-            $('.captcha_error').text("You can't leave Captcha Code empty");
-            error=false;
-            return false;
-        }
-        
-
         if(error){
             var jqxhr = $.post( "./contact-form.php",$('#r_contact_id').serialize(), function(data) {
                 //alert( "success" );
@@ -274,11 +262,6 @@ $(document).ready(function(){
 function isEmail(email) {
     var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     return regex.test(email);
-  }
-
-  function captchaValidated()
-  {   
-      $('.captcha_error').text("");
   }
 
  function detectCardType(event) {
@@ -405,11 +388,11 @@ function getCardType(card_no) {
             //-- Click on QUANTITY
             $(".minus").on("click",function(){
                 var now = $(this).prev().val();
-                let attId=$(this).attr('data-id');
-                let totalPrice=$('.r_order_total').html();
-                let price=$('.r_cart_price_total_hidden'+attId).val();
+                var attId=$(this).attr('data-id');
+                var totalPrice=$('.r_order_total').html();
+                var price=$('.r_cart_price_total_hidden'+attId).val();
                 if ($.isNumeric(now)){
-                    let quantity=parseInt(now)-1;
+                    var quantity=parseInt(now)-1;
                     if (parseInt(now) -1 > 0){ now--;}
                     $(this).prev().val(now);
                     if(quantity>0){
@@ -502,7 +485,7 @@ function getCardType(card_no) {
                 var queries = {};
                 $.each(document.location.search.substr(1).split('&'),function(c,q){
                     var i = q.split('=');
-                    queries[i[0].toString()] = decodeURIComponent(i[1].toString());
+                    queries[i[0].toString()] = decodeURIComponent(i[1].replace(/\+/g, " ").toString());
                   });
                   
                 $.ajax({

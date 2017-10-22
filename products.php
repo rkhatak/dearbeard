@@ -45,7 +45,7 @@
         
         <div class="left_sec  r_left_sec">
         
-        <p class="left_heading">FILTER BY</p>
+        <p class="left_heading">FILTER BY category</p>
         <hr class="left_hr">
         
         <button class="clear_all" onclick="clearAll()"><i class="glyphicon glyphicon-remove gly_clear"></i> Clear All</button>
@@ -62,7 +62,7 @@
         }
         ?>
         
-        <p class="left_heading left_sec_heading">TAGS</p>
+        <p class="left_heading left_sec_heading">filter by TAGS</p>
         <hr class="left_hr">
         
         <?php
@@ -77,7 +77,7 @@
         }
         ?>
         
-        <p class="left_heading left_third_heading">HAIR TYPE</p>
+        <p class="left_heading left_third_heading">Filter by Sub-category</p>
         <hr class="left_hr">
         
         <?php
@@ -101,13 +101,13 @@
         <div class="cat_section">
         <div class="sort_section">
         <div class="window"><i class="glyphicon glyphicon-th-large gly_window" ></i></div>
-        <div class="list"><i class="glyphicon glyphicon-th-list gly_list"></i></div>
         
         
-        <p class="products12"></p>
-        <p class="sort_by">Sort By &nbsp; </p>
         
-        <div class="best-form_cat" >
+   
+      
+        
+        <div class="best-form_cat"><p class="sort_by">Sort By &nbsp; </p>
         <form>
         <div class="form-group">
         

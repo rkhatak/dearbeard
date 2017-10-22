@@ -130,7 +130,7 @@
         
         
         <ul class="effect_icons">
-        <a  href="#normalModal" data-toggle="modal" class="quick"><li><i class="fa fa-eye" aria-hidden="true"></i></li></a>
+        <a  href="#normalModal" data-toggle="modal" class="quick"><li><i class="fa fa-eye" aria-hidden="true"></i></li>
         <li><i class="fa fa-cart-plus" aria-hidden="true"></i></li>
         <li><i class="fa fa-clock-o" aria-hidden="true"></i></li>
         </ul>
