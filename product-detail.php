@@ -38,23 +38,26 @@
 		<li><a href="javascript:void(0)"><?php echo $productinfo['subproduct_cat_id'];?></a></li>
 		</ol>
 		<div class="col-left">
-		<div class="beard-wash-left">
-		<img src="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>" alt="<?php echo $productinfo['product_name'];?>">
-		</div>
-
-		<div id="product-move" class="owl-carousel owl-theme">
-		<?php
-		$thumb_img = explode(",",$productinfo['product_img']);
-		foreach($thumb_img as $thumb_key=>$thumb_value)
-		{
-		?>
-		<div class="item">
-		<a href="#"><div class="product-run"><img src="admin/product_pic/<?php echo $thumb_value;?>" alt="slide"></div></a>
-		</div>
-		<?php
-		}
-		?>
-		</div>
+			<section class="slider">
+			<div class="flexslider">
+			<ul class="slides">
+				<li data-thumb="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>">
+					<img src="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>" />
+				</li>
+				<?php
+					$thumb_img = explode(",",$productinfo['product_img']);
+					foreach($thumb_img as $thumb_key=>$thumb_value)
+					{ ?>
+						<li data-thumb="admin/product_pic/<?php echo $thumb_value;?>">
+							<img src="admin/product_pic/<?php echo $thumb_value;?>" />
+						</li>
+				<?php
+					}
+				?>
+					
+			</ul>
+			</div>
+		</section>
 		</div>
 		<div class="col-right">
 		<div class="washarea">

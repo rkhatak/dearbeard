@@ -1316,3 +1316,7 @@ float: left;}
 
 .afterlogin  ul li a{ text-transform:uppercase; font-weight:300; letter-spacing:0.5px;line-height:30px; padding-top:10px;}
 .afterlogin  ul li a:hover{ text-transform:uppercase;    font-weight:300; letter-spacing:0.5px;line-height:30px; padding-top:10px;}
+
+.flex-direction-nav li a.flex-prev,.flex-direction-nav li .flex-next {
+  display: none;
+}

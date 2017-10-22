@@ -68,7 +68,9 @@
 	<link href="css/star-rating.css" rel="stylesheet">
 	<!--owl carousel-->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">    
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">   
+	<!--Flex Slider-->
+	<link rel="stylesheet" href="css/flexslider.css"> 
 	<!--style-->
 	<link href="css/style.css" rel="stylesheet">
 	<!--style-->

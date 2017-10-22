@@ -672,4 +672,14 @@ $(document).ready(function(){
             $('.more_content').slideUp();
         }
     })
-})
+});
+
+$(window).load(function(){
+    $('.flexslider').flexslider({
+      animation: "slide",
+      controlNav: "thumbnails",
+      start: function(slider){
+        $('body').removeClass('loading');
+      }
+    });
+  });
