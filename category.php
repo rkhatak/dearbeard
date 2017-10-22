@@ -221,12 +221,14 @@
 		</div>
 		<div class="cart-info">
 		<h4><?php echo $data_product['product_name'];?></h4>
-		<ul>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/grey-symbol.svg" alt="start"></a></li>
+		<?php
+            $sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='".$data_product['product_id']."' AND review_status = 'Publish'";
+            $run_avrageviews = mysqli_query($con,$sql_avrageviews) or die(mysqli_error($con));
+            $review_value = mysqli_fetch_array($run_avrageviews);
+            $total_avrege = $review_value['total'];
+        ?>
+        <ul>
+		<li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
 		</ul>
 		<h6>$<?php echo $data_product['product_price'];?></h6>
 		<button type="submit" id="addto-cartslide" class="cart-add" value="<?php echo $data_product['product_id'];?>">add to cart</button>
