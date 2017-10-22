@@ -33,9 +33,9 @@
 		<div class="row">
 
 		<ol class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#"><?php echo $productinfo['product_cat_id'];?></a></li>
-		<li><a href="#"><?php echo $productinfo['subproduct_cat_id'];?></a></li>
+		<li><a href="#index.php">Home</a></li>
+		<li><a href="javascript:void(0)"><?php echo $productinfo['product_cat_id'];?></a></li>
+		<li><a href="javascript:void(0)"><?php echo $productinfo['subproduct_cat_id'];?></a></li>
 		</ol>
 		<div class="col-left">
 		<div class="beard-wash-left">

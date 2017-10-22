@@ -191,13 +191,15 @@
         <img src="admin/product_pic/<?php echo $data_product['product_featureimg'];?>" alt="<?php echo $data_product['product_name'];?>">
         </div>
         <p><?php echo $data_product['short_description'];?></p>
-        <ul class="ratings">
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/grey-star.png" alt="star"></li>
-        </ul>
+        <?php
+            $sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='".$data_product['product_id']."' AND review_status = 'Publish'";
+            $run_avrageviews = mysqli_query($con,$sql_avrageviews) or die(mysqli_error($con));
+            $review_value = mysqli_fetch_array($run_avrageviews);
+            $total_avrege = $review_value['total'];
+        ?>
+        <ul>
+		<li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
+		</ul>
         <button href="#" class="btn home-cart" value="<?php echo $data_product['product_id'];?>">add to cart<span><?php echo "$".$data_product['product_price'];?></span></button>
         </div>
         </div>
