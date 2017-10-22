@@ -69,7 +69,11 @@
 		<a class="nav-link js-scroll-trigger" href="#summary">Write a Review</a>
 		</div>
 		<div class="clearfix"></div>
-		<p><?php echo substr($productinfo['short_description'],0,90);?></p>
+		<?php
+			if($productinfo['short_description'] != '' && $productinfo['short_description'] != NULL)
+				echo "<p>".substr($productinfo['short_description'],0,90)."</p>";
+		?>
+		
 		<?php if($productinfo['product_desc'] != '' && $productinfo['product_desc'] != NULL)
 		{ ?>
 			<a href="javascript:void(0)" title="show" class="more">more</a>
