@@ -68,26 +68,7 @@ $(document).ready(function(){
     });
 
 });
-
-
-
-
-$(document).ready(function() {
-$('#add_more').click(function() {
-$(this).before($("<div/>", {
-id: 'filediv'
-}).fadeIn('slow').append($("<input/>", {
-name: 'product_img[]',
-type: 'file',
-id: 'file',
-}), $("<br/><br/>")));
-});
-});
-
-$(function() {
-            $( "#datepicker" ).datepicker();
-           
-         }); 
+ 
 </script>
 
   

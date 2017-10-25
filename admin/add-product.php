@@ -11,7 +11,7 @@ $tab_name = "admininfo";
 $user_data = showuserdata($con,$id,$tab_name);
 if(isset($_POST['add_product']))
 {
-
+//echo '<pre>';print_r($_POST);die;
  $product_name = mysqli_real_escape_string($con,$_POST['product_name']);
  $product_price = mysqli_real_escape_string($con,$_POST['product_price']);
  $short_desc = mysqli_real_escape_string($con,$_POST['short_desc']);
@@ -24,64 +24,47 @@ if(isset($_POST['add_product']))
  $product_tag=mysqli_real_escape_string($con,$_POST['product_tag']);
 
  // Check Works Limit Of Discription
- 
-
     $count_shortw = str_word_count($short_desc) ;
     $count_logw = str_word_count($product_desc) ;
 	
 	if($count_shortw <= 100 && $count_logw <= 200 )	
 	{
   // Add Feature Image Start
- 
- $feature_imgname = $_FILES['feature_img']['name'];
- $feature_imgtmp = $_FILES['feature_img']['tmp_name'];
- $feature_imgtype = $_FILES['feature_img']['type'];
+        $fImage=isset($_POST['r_feature_image'])?$_POST['r_feature_image']:'';
+        if($fImage!=''){    
+            $imageName=strtotime(date('y-m-d h:i:s')).'image.jpeg'; 
+            $feature_imgname=$imageName;
+            $source = fopen($fImage, 'r');
+            $path = 'product_pic/'.$imageName;
+            $destination = fopen($path, 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
 
-
-  if($feature_imgtype == "image/jpeg" || $feature_imgtype == "image/png" || $feature_imgtype == "image/jpg" || $feature_imgtype == "image/gif" )
- {
-	$width = 500;
-	$height = 500;
-	featureresize($width, $height);
-	
-	
- }else{
-	 
-	  $msg = "<h5 style='text-align: center;color: red;'>Image Not Correct Format</h5>";
-	  $flage_feature = "stop";
-	 
- }
- 
- // Add Feature Image End
- 
- 
- // Add Other Image Start
-
-	 
-	 for ($i = 0; $i < count($_FILES['product_img']['name']); $i++)
+        }    
+	 $product_img=[];
+        if(isset($_POST['product_img']) && $_POST['product_img']!=''){
+         for ($i = 0; $i < count($_POST['product_img']); $i++)
 	 {
-		 
-		if($_FILES['product_img']['type'][$i] == "image/jpeg" || $_FILES['product_img']['type'][$i] == "image/png" || $_FILES['product_img']['type'][$i] == "image/jpg" || $_FILES['product_img']['type'][$i] == "image/gif" )
-		{
-				
-			$width = 500;
-			$height = 500;
-			resize($width, $height,$i);
-			
-		
-		}else{
-			
-			$msg = "<h5 style='text-align: center;color: red;'> Image <strong>".$_FILES['product_img']['name'][$i]."</strong> Not Correct Format</h5>";
-			$flage_img = "stop";
-		}
+            $fImage=$_POST['product_img'][$i];
+           
+            $imageProductName=strtotime(date('y-m-d h:i:s')).$i.'image.jpeg'; 
+             array_push($product_img,$imageProductName);
+            $feature_imgname=$imageName;
+            $source = fopen($fImage, 'r');
+            $path = 'product_pic/'.$imageProductName;
+            $destination = fopen($path, 'w');
+            stream_copy_to_stream($source, $destination);
+            fclose($source);
+            fclose($destination);
 			
 	 }
-	 
+	} 
 
  
   if(!isset($flage_feature) && !isset($flage_img))
   {
-	 $pic_name = implode(",",$_FILES['product_img']['name']);
+	 $pic_name = implode(",",$product_img);
 	 
 	 $product_status = "Unpublish";
 	 $product_info = array(
@@ -241,14 +224,43 @@ require('header-menu.php');
 		
 		<div class="form-group"> 
 		<label>Feature Images</label>  
-        <input type="file" name="feature_img"  required />
+                  <input type="file" name="feature_img" id="r_product_temp_f_image"  required />
+                  <div id="r_feature_image_preview"></div>     
+        
 		</div>
 		
 		<div class="form-group">
 		<label>Product Other Images</label>                
-        <div id="filediv"><input type="file" name="product_img[]" id="file"  required /></div>
+                 <div id="filediv">
+                     <input type="file" name="product_img[]" id="file"  required />
+                     <div id="r_product_image_preview"></div>
+                 
+                 </div>
 		<br/>
 		<input type="button" id="add_more" class="upload" value="Add More Files" />
+                <div id="r_addmore_files_append"></div>
+                
+         <div class="modal fade in" id="modal-default" style="display: none; padding-right: 17px;">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" class="r_popup_close">Ã—</span></button>
+                <h4 class="modal-title">Choose your image location</h4>
+              </div>
+              <div class="modal-body">
+                <img src="../images/beard-three.png" id="r_feature_img" style="max-width: 100%;"/>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left r_popup_close" >Close</button>
+                <span id="r_preview_image_error" style="color:red"></span>
+                <button type="button" class="btn btn-primary r_submit_crop_image">Save changes</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+        </div>
 		</div>
 		
 		<div class="form-group">            
@@ -300,11 +312,12 @@ require('header-menu.php');
 <script src="bower_components/ckeditor/ckeditor.js"></script>
 
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+
+  <script src="../js/rcrop.min.js"></script>
+ 
+  <link rel="stylesheet" href="../css/rcrop.min.css" type="text/css" />
+  <script src="../js/adminjs.js"></script>
 <script>
-  $(document).ready(function () {
-    $('.sidebar-menu').tree()
-  })
-  
     $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
