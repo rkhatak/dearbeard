@@ -22,15 +22,15 @@
                             
                             <div class="dashboard">
                             	<ul>
-                                	<li><a href="myaccount.html"><i class="fa fa-tachometer" aria-hidden="true"></i> dashboard<a></li>
-                                    <li><a href="myaccount-download.html"><i class="fa fa-download" aria-hidden="true"></i>  my downloads<a></li>
-                                    <li class="active"><a href="myaccount-order.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> my orders<a></li>
-                                    <li><a href="myaccount-account.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit account<a></li>
-                                    <li><a href="myaccount-address.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit address<a></li>
-                                    <li><a href="myaccount-contact.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> contact-form<a></li>
-                                    <li><a href="https://www.google.com" target="_blank"><i class="fa fa-link" aria-hidden="true"></i> custom link<a></li>
+                                	<li><a href="myaccount.html"><i class="fa fa-tachometer" aria-hidden="true"></i> dashboard</a></li>
+                                    <li><a href="myaccount-download.html"><i class="fa fa-download" aria-hidden="true"></i>  my downloads</a></li>
+                                    <li class="active"><a href="myaccount-order.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> my orders</a></li>
+                                    <li><a href="myaccount-account.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit account</a></li>
+                                    <li><a href="myaccount-address.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> edit address</a></li>
+                                    <li><a href="myaccount-contact.html"><i class="fa fa-file-text-o" aria-hidden="true"></i> contact-form</a></li>
+                                    <li><a href="https://www.google.com" target="_blank"><i class="fa fa-link" aria-hidden="true"></i> custom link</a></li>
                                     <li><a href="myaccount-content.html"><i class="fa fa-area-chart" aria-hidden="true"></i> content with image<a></li>
-                                    <li><a href="myaccount-signout.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> logout<a></li>
+                                    <li><a href="myaccount-signout.html"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> logout</a></li>
                                 </ul>
                             </div><!--dashboard-->
                             

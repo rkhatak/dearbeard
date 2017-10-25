@@ -146,9 +146,9 @@
         <li><img src="images/yellow-star.png" alt="star"></li>
         <li><img src="images/grey-star.png" alt="star"></li>        
         </ul>
-        
+        <?php  if($data_catproduct['short_description']){?>
         <p><?php echo $data_catproduct['short_description'];?></p>
-        
+        <?php } ?>
         </div>
         </div>
         <?php
@@ -181,7 +181,9 @@
         <div class="shampoo-image">
         <img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg'];?>" alt="<?php echo $data_catproduct_win['product_name'];?>">
         </div>
+								<?php if($data_catproduct_win['short_description'] !=''){ ?>
         <p><?php echo $data_catproduct_win['short_description'];?></p>
+								<?php } ?>
         <ul class="ratings">
         <li><img src="images/yellow-star.png" alt="star"></li>
         <li><img src="images/yellow-star.png" alt="star"></li>

@@ -91,12 +91,12 @@
         
         <div class="sort_section">
         <div class="window"><i class="glyphicon glyphicon-th-large gly_window" ></i></div>
-        <div class="list"><i class="glyphicon glyphicon-th-list gly_list"></i></div>
         
         
-        <p class="products12">There <?php echo $total_product;?> products</p>
-    <p class="sort_by">Sort By &nbsp;:</p>
-    <div class="best-form best-form_cat" >
+        
+       
+  
+    <div class="best-form best-form_cat" > <p class="products12">There <?php echo $total_product;?> products</p>
     <form>
         <div class="form-group">
         
@@ -126,8 +126,8 @@
 	 </div>
      <div class="list_detail">
 		<button type="submit" class="cat-cart" value="<?php echo $data_catproduct['product_id'];?>"><i class="fa fa-shopping-cart"></i></button>	
-		<h5 ><?php echo $data_catproduct['product_name'];?></h5>
-		<h3  ><?php echo "$".$data_catproduct['product_price'];?></h3>
+		<h5><?php echo $data_catproduct['product_name'];?></h5>
+		<h3><?php echo "$".$data_catproduct['product_price'];?></h3>
 		
 						<ul class="ratings" >
                         	<li><img src="images/grey-star.png" alt="star"></li>
@@ -171,7 +171,7 @@
                     
 					<button type="submit" class="cat-cart" value="<?php echo $data_catproduct_win['product_id'];?>">add to cart<span><?php echo "$".$data_catproduct_win['product_price'];?></span></button>	
                     </div>
-                    	<h6><?php echo $data_catproduct_win['product_name'];?></h6>
+                    <a  href="product-detail.php?product_id=<?php echo $data_catproduct_win['product_id']; ?>" data-toggle="modal" class="quick"><?php echo $data_catproduct_win['product_name'];?></a>
                         <div class="shampoo-image">
                         	<img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg'];?>" alt="<?php echo $data_catproduct_win['product_name'];?>">
                         </div>

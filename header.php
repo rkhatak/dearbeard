@@ -66,6 +66,7 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<!-- star rating -->
 	<link href="css/star-rating.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://raw.githubusercontent.com/jamesflorentino/nanoScrollerJS/master/bin/css/nanoscroller.css">
 	<!--owl carousel-->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/owl.theme.default.min.css">    
@@ -77,6 +78,7 @@
 	<script src="js/ajax-sumit.js"></script>
 	<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript" src="js/form-validation.js"></script>
+	<script type="text/javascript" src="javascripts/jquery.nanoscroller.js"></script>
 	</head>
 	<body>
 		<!--header-->
@@ -127,7 +129,7 @@
 	<!--top-->
 	</header>
 	<!--header-->
-	<div class="clearfix"></div>
+
 	<!--menu-->
 	<div id="menu" class="remove">
 	<nav class="navbar navbar-default">
