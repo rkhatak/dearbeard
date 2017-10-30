@@ -199,4 +199,20 @@ if($run_action == true)
 }	
 }
 
+/*Header Delete */
+
+if(isset($_GET['tag_id']))
+{
+$id = $_GET['tag_id'];
+$sql_action = "DELETE FROM tag  WHERE id = '$id' ";
+$run_action = mysqli_query($con,$sql_action) or die(mysqli_error($con));	
+
+$sql_action = "DELETE FROM product_tag  WHERE tId = '$id' ";
+$run_action = mysqli_query($con,$sql_action) or die(mysqli_error($con));	
+if($run_action == true)
+{
+	header('Location: tag-list.php');
+}	
+}
+
 ?>

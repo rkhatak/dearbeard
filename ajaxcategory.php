@@ -6,6 +6,8 @@
         $cat_value = $_POST['cat_value'];
         $condition="";
         $counter=0;
+        $joinTag=" inner join product_tag on (product.product_id=product_tag.pId) and ";
+        $joinTagCon="";
         if($cat_value=='all'){
             $condition.=$condition; 
         }else{
@@ -21,7 +23,7 @@
                            }
                           
                            if(isset($cat_value[0]['tag']) && $cat_value[0]['tag']!=''){
-                               $condition.="AND product_tag = '".$cat_value[0]['tag']."'";  
+                               $joinTagCon.="tId = '".$cat_value[0]['tag']."'";    
                            }
                         }else{
                                 $condition.="AND ";
@@ -34,7 +36,7 @@
                                                             $condition .= "subproduct_cat_id = '".$v['subcategory']."'";
                                                         }
                                                         if (isset($v['tag']) && $v['tag'] != '') {
-                                                            $condition .= "product_tag = '".$v['tag']."'";
+                                                            $joinTagCon .= "tId = '".$v['tag']."'";
                                                         }
                                                     }else{
                                                     
@@ -45,7 +47,7 @@
                                                             $condition .= "subproduct_cat_id = '".$v['subcategory'] ."' AND ";
                                                         }
                                                         if (isset($v['tag']) && $v['tag'] != '') {
-                                                            $condition .= "product_tag = '".$v['tag']."' AND  ";
+                                                            $joinTagCon .= " tId= '".$v['tag']."' OR  ";
                                                         }
                                                 }
                                             }
@@ -53,14 +55,24 @@
             
         }
         // List View
+                if($joinTagCon!=''){
+                 $joinTag=$joinTag. '('.$joinTagCon.')';
+                }else{
+                  $joinTag="";
+                }
+                if($condition!='AND ' && $condition!=''){
+                    $condition=$condition;
+                }else{
+                    $condition="";
+                }
 
-		$sql_catproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
+		$sql_catproduct= "SELECT *FROM product $joinTag WHERE status = 'Publish' $condition group by product_id";
 		$run_catproduct = mysqli_query($con,$sql_catproduct) or die(mysqli_error($con));
 		$total_productlist = mysqli_num_rows($run_catproduct);
 
 		// Windows View
 
-		$sql_winproduct= "SELECT *FROM product WHERE status = 'Publish' $condition";
+		$sql_winproduct= "SELECT *FROM product $joinTag WHERE status = 'Publish' $condition group by product_id";
 		$cat_product_win = mysqli_query($con,$sql_winproduct) or die(mysqli_error($con));
 		$total_productwin = mysqli_num_rows($cat_product_win);
 

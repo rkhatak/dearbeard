@@ -69,8 +69,8 @@
         while($subcat_name = mysqli_fetch_array($tags))
         {
         ?>
-        <label class="control control--checkbox"><?php echo $subcat_name['product_tag'];?>
-        <input type="checkbox" name="tags" value="<?php echo $subcat_name['product_tag'];?>" class="tags">
+        <label class="control control--checkbox"><?php echo $subcat_name['name'];?>
+        <input type="checkbox" name="tags" value="<?php echo $subcat_name['id'];?>" class="tags">
         <div class="control__indicator"></div>
         </label>
         <?php

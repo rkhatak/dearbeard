@@ -9,6 +9,10 @@ $id = $_SESSION['id'];
 
 $tab_name = "admininfo";
 $user_data = showuserdata($con,$id,$tab_name);
+
+$sql_list = "SELECT *FROM tag";
+$run_list = mysqli_query($con,$sql_list) or die(mysqli_error($con));
+
 if(isset($_POST['add_product']))
 {
 //echo '<pre>';print_r($_POST);die;
@@ -21,7 +25,7 @@ if(isset($_POST['add_product']))
  $product_quantity = mysqli_real_escape_string($con,$_POST['product_quantity']);
  $product_weight = mysqli_real_escape_string($con,$_POST['product_weight']);
  $product_shipping = mysqli_real_escape_string($con,$_POST['product_shipping']);
- $product_tag=mysqli_real_escape_string($con,$_POST['product_tag']);
+ $product_tag=$_POST['product_tag'];
 
  // Check Works Limit Of Discription
     $count_shortw = str_word_count($short_desc) ;
@@ -79,14 +83,19 @@ if(isset($_POST['add_product']))
 	 'status' => $product_status,
 	 'product_SKU' => $product_quantity,
 	 'product_weight' => $product_weight,
-	 'product_shipping' => $product_shipping,
-	 'product_tag'=>$product_tag
+	 'product_shipping' => $product_shipping
 	);
 	 $tab_product = "product";
 	 $result = add_product($con,$product_info,$tab_product);
 	 if($result == true)
 	 {
 		  echo $last_id = mysqli_insert_id($con);
+                  if($product_tag && $product_tag!=''){
+                      foreach($product_tag as $tags){
+                          $sql = "insert into product_tag set pid='".$last_id."',tid='".$tags."'";	
+                          $run = mysqli_query($con,$sql) or die(mysqli_error($con)) ;
+                      }
+                  }
 		  $msg = "<h5 style='text-align: center;color: green;'>Product  Add Succesfully </h5>";
 		  
 	 }else{
@@ -209,8 +218,17 @@ require('header-menu.php');
 		</div>
 
 		<div class="form-group">
-        <label>Tag</label>                
-        <input type="text" name="product_tag" class="form-control select2 select2-hidden-accessible" style="width: 100%;" required >
+                    <label>Tag</label>  
+                    <select name="product_tag[]" multiple="multiple" required="" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
+                        <option value="">Select Tag</option>
+                        <?php
+                        while($data_list = mysqli_fetch_array($run_list)){ ?>
+                        <option value="<?php echo $data_list['id']?>"><?php echo $data_list['name']?></option>  
+                       <?php }
+                        
+                        ?>
+                    </select>
+        
 		</div>
 				
 		<div class="form-group">
@@ -245,7 +263,7 @@ require('header-menu.php');
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true" class="r_popup_close">Ã—</span></button>
+                  <span aria-hidden="true" class="r_popup_close">x</span></button>
                 <h4 class="modal-title">Choose your image location</h4>
               </div>
               <div class="modal-body">

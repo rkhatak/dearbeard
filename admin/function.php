@@ -101,7 +101,7 @@ function add_category($con,$cat_info,$tab_category)
 	$sql = "INSERT INTO $tab_category SET";
 	foreach($cat_info as $key=>$value)
 	{
-	 $sql = $sql." $key = '".$value."' , " ;	 
+	 $sql = $sql." $key = '".strtolower($value)."' , " ;	 
 	}
 	$sql_main = rtrim($sql," ,");
     $run = mysqli_query($con,$sql_main) or die(mysqli_error($con));
@@ -503,5 +503,13 @@ function resize($width, $height,$i){
  
  
 } 
+
+function tagList($con)
+{
+$sql = "SELECT id FROM tag";	
+$run = mysqli_query($con,$sql) or die(mysqli_error($con)) ;
+$user_info = mysqli_fetch_array($run);
+return $user_info;
+}
 
 ?>

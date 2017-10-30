@@ -387,9 +387,15 @@ $(document).ready(function(){
           </a>
         </li>
 		
-		<li class="category">
+		<li class="">
           <a href="category.php">
             <i class="fa fa-dashboard"></i> <span>Add Category</span>
+            
+          </a>
+        </li>
+        <li class="">
+          <a href="tag.php">
+            <i class="fa fa-dashboard"></i> <span>Add Tag</span>
             
           </a>
         </li>
