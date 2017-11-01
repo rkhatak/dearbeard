@@ -21,16 +21,16 @@
                             $tags=isset($categoryFilter[0]['tag']) && $categoryFilter[0]['tag']!=''?$categoryFilter[0]['tag']:'';;
         
                             if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags'";
+                                $condition1=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name!='' && $sub_cat_name!='' && $tags==''){
                                 $condition1=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name=='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1=" and subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags'";
+                                $condition1=" and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name!='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1=" and product_cat_id = '$cat_name' and product_tag = '$tags'";
+                                $condition1=" and product_cat_id = '$cat_name'";
                             }
 
                             if($cat_name!='' && $sub_cat_name=='' && $tags==''){
@@ -39,13 +39,11 @@
                             if($cat_name=='' && $sub_cat_name!='' && $tags==''){
                                 $condition1=" and subproduct_cat_id = '$sub_cat_name'";
                             }
-                            if($cat_name=='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1=" and product_tag = '$tags'";
-                            }
+                            
             
                         }else{
                                 $condition1="";
-                                $condition1.="AND ";
+                                $condition1.=" ";
                                 if(count($categoryFilter)>0){
                                 foreach($categoryFilter as $key=>$v){
                                         if(count($categoryFilter)==$key+1){
@@ -55,27 +53,25 @@
                             $tags=isset($v['tag']) && $v['tag']!=''?$v['tag']:'';
         
                             if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1.=" product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags'";
+                                $condition1.=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name!='' && $sub_cat_name!='' && $tags==''){
-                                $condition1.=" product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'";
+                                $condition1.=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name=='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1.=" subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags'";
+                                $condition1.=" and subproduct_cat_id = '$sub_cat_name'";
                             }
                             if($cat_name!='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1.=" product_cat_id = '$cat_name' and product_tag = '$tags'";
+                                $condition1.=" and product_cat_id = '$cat_name'";
                             }
 
                             if($cat_name!='' && $sub_cat_name=='' && $tags==''){
-                                $condition1.=" product_cat_id = '$cat_name'";
+                                $condition1.=" and product_cat_id = '$cat_name'";
                             }
                             if($cat_name=='' && $sub_cat_name!='' && $tags==''){
-                                $condition1.=" subproduct_cat_id = '$sub_cat_name'";
+                                $condition1.=" and subproduct_cat_id = '$sub_cat_name'";
                             }
-                            if($cat_name=='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1.=" product_tag = '$tags'";
-                            }
+                           
                                                     }else{
                                                     
                                                             
@@ -83,28 +79,17 @@
                             $sub_cat_name=isset($v['subcategory']) && $v['subcategory']!=''?$v['subcategory']:'';
                             $tags=isset($v['tag']) && $v['tag']!=''?$v['tag']:'';
         
-                            if($cat_name!='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1.=" product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags' and ";
+                            if($cat_name!='' && $sub_cat_name!=''){
+                                $condition1.=" and product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name' and ";
                             }
-                            if($cat_name!='' && $sub_cat_name!='' && $tags==''){
-                                $condition1.=" product_cat_id = '$cat_name' and subproduct_cat_id = '$sub_cat_name'  and ";
+                            if($cat_name=='' && $sub_cat_name!=''){
+                                $condition1.=" and subproduct_cat_id = '$sub_cat_name'  ";
                             }
-                            if($cat_name=='' && $sub_cat_name!='' && $tags!=''){
-                                $condition1.=" subproduct_cat_id = '$sub_cat_name' and product_tag = '$tags'  and ";
+                            if($cat_name!='' && $sub_cat_name==''){
+                                $condition1.=" and product_cat_id = '$cat_name'  ";
                             }
-                            if($cat_name!='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1.=" product_cat_id = '$cat_name' and product_tag = '$tags'  and ";
-                            }
-
-                            if($cat_name!='' && $sub_cat_name=='' && $tags==''){
-                                $condition1.=" product_cat_id = '$cat_name'  and ";
-                            }
-                            if($cat_name=='' && $sub_cat_name!='' && $tags==''){
-                                $condition1.=" subproduct_cat_id = '$sub_cat_name'  and ";
-                            }
-                            if($cat_name=='' && $sub_cat_name=='' && $tags!=''){
-                                $condition1.=" product_tag = '$tags'  and ";
-                            }
+                           
+                            
                                                 }
                         }}
                         }
