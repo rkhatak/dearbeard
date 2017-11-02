@@ -20,7 +20,10 @@ if($_GET['delete_uid'])
 {
 $id = $_GET['delete_uid'];
 $sql_action = "DELETE FROM product  WHERE product_id = '$id' ";
-$run_action = mysqli_query($con,$sql_action) or die(mysqli_error($con));	
+$run_action = mysqli_query($con,$sql_action) or die(mysqli_error($con));
+
+$sql_action = "DELETE FROM product_tag  WHERE pId = '$id' ";
+$run_action = mysqli_query($con,$sql_action) or die(mysqli_error($con));
 if($run_action == true)
 {
 	header('Location: product-list.php');

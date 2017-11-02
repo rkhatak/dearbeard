@@ -340,7 +340,7 @@ return $run_sub;
 
 function showtags($con)
 {
-$sql_sub = "SELECT DISTINCT product_tag  FROM product";	
+echo $sql_sub = "SELECT DISTINCT a.id,a.name FROM tag a inner join product_tag b on a.id=b.tid";	
 $run_sub = mysqli_query($con,$sql_sub) or die(mysqli_error($con)) ;
 
 return $run_sub;

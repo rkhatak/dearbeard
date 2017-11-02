@@ -21,7 +21,7 @@
         $stripeEmail = $_POST['email'];  
         $amount = $_POST['amount'];  // Chargeble amount
         
-        
+        echo $amount;
         
         $customer = \Stripe\Customer::create(array(
         'email' => $stripeEmail,
