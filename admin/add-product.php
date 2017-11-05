@@ -73,8 +73,8 @@ if(isset($_POST['add_product']))
 	 $product_status = "Unpublish";
 	 $product_info = array(
 	 'product_name' => $product_name ,
-	 'product_desc' => $product_desc ,
-	 'short_description' => $short_desc ,
+	 'product_desc' => strip_tags($product_desc),
+	 'short_description' => strip_tags($short_desc),
 	 'product_price' => $product_price ,
 	 'product_cat_id' => $product_cat_id ,
 	 'subproduct_cat_id' => $subproduct_cat_id ,

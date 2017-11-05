@@ -19,7 +19,7 @@
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = md5(mysqli_real_escape_string($con,$_POST['password']));
 	$login_arrays = array( 'UserEmail' => $username,
-	'UserPassword' => $password
+	'UserPassword' => $password,'Userstatus'=>'Active'
 	);
 
 	$login_result = loginuser($con,$login_arrays);
