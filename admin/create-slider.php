@@ -122,9 +122,25 @@ require('header-menu.php');
         <label>Button Title</label>                
 		<input type="text" name="button_title" class="form-control select2 select2-hidden-accessible" style="width: 100%;"  >
 		</div>
+                    <div class="form-group">
+        <label>Slider Category</label>                
+		<select name="slider_category" id="r_slider_category" class="form-control select2 select2-hidden-accessible" required>
+		<option value="">Select Category</option>
+		<?php
+		$sql_cat1 = "SELECT DISTINCT cat_name FROM category";
+		$run_cat1 = mysqli_query($con,$sql_cat1) or die(mysqli_error($con));
+		while($data_cat = mysqli_fetch_array($run_cat1))
+		{
+		?>
+		<option value="<?php echo $data_cat['cat_name']?>"><?php echo $data_cat['cat_name']?></option>	
+		<?php
+		}	
+		?>
+		</select>
+		</div>
 		<div class="form-group">
         <label>Slider Link</label>                
-		<input type="text" name="slider_link" class="form-control select2 select2-hidden-accessible" style="width: 100%;"  >
+        <input type="text" readonly="readonly" id="r_slider_link" name="slider_link" class="form-control select2 select2-hidden-accessible" style="width: 100%;"  >
 		</div>
 		<div class="form-group">
 		<label>Product Image</label>                
@@ -186,7 +202,14 @@ require('header-menu.php');
 <script src="dist/js/demo.js"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
+    $('#r_slider_category').on('change',function(){
+     var host=window.location.origin+'/dearbeard/product-serach.php?category=';
+     if($(this).val()!=''){
+         host=host+$(this).val();
+         $('#r_slider_link').val(host);
+     }   
+    })
   })
 </script>
 </body>
