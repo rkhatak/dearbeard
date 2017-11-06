@@ -175,25 +175,24 @@ while ($data_catproduct = mysqli_fetch_array($cat_product)) {
                                 <div class="shampoo-image">
                                     <img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg']; ?>" alt="<?php echo $data_catproduct_win['product_name']; ?>">
                                 </div>
-    <?php if ($data_catproduct_win['short_description'] != '') { ?>
+                                    <?php if ($data_catproduct_win['short_description'] != '') { ?>
                                     <p><?php echo $data_catproduct_win['short_description']; ?></p>
-
-        <?php
-        $sql_avrageviews = "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='" . $data_catproduct_win['product_id'] . "' AND review_status = 'Publish'";
-        $run_avrageviews = mysqli_query($con, $sql_avrageviews) or die(mysqli_error($con));
-        $review_value = mysqli_fetch_array($run_avrageviews);
-        $total_avrege = $review_value['total'];
-        ?>
+                                <?php } ?>
+                                    <?php
+                                    $sql_avrageviews = "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='" . $data_catproduct_win['product_id'] . "' AND review_status = 'Publish'";
+                                    $run_avrageviews = mysqli_query($con, $sql_avrageviews) or die(mysqli_error($con));
+                                    $review_value = mysqli_fetch_array($run_avrageviews);
+                                    $total_avrege = $review_value['total'];
+                                    ?>
                                     <ul>
                                         <li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege; ?>" class="rating"></li>
                                     </ul>
-
                                     <button href="#" class="btn wcat-cart" value="<?php echo $data_catproduct_win['product_id']; ?>">add to cart<span><?php echo "$" . $data_catproduct_win['product_price']; ?></span></button>
-                                </div>
+                                
+                </div>
                             </div>
                         </div>
-        <?php
-                }}
+           <?php }
     ?>
 
                 </div>
