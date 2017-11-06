@@ -33,28 +33,31 @@
 		<div class="row">
 
 		<ol class="breadcrumb">
-		<li><a href="#">Home</a></li>
-		<li><a href="#"><?php echo $productinfo['product_cat_id'];?></a></li>
-		<li><a href="#"><?php echo $productinfo['subproduct_cat_id'];?></a></li>
+		<li><a href="#index.php">Home</a></li>
+		<li><a href="javascript:void(0)"><?php echo $productinfo['product_cat_id'];?></a></li>
+		<li><a href="javascript:void(0)"><?php echo $productinfo['subproduct_cat_id'];?></a></li>
 		</ol>
 		<div class="col-left">
-		<div class="beard-wash-left">
-		<img src="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>" alt="<?php echo $productinfo['product_name'];?>">
-		</div>
-
-		<div id="product-move" class="owl-carousel owl-theme">
-		<?php
-		$thumb_img = explode(",",$productinfo['product_img']);
-		foreach($thumb_img as $thumb_key=>$thumb_value)
-		{
-		?>
-		<div class="item">
-		<a href="#"><div class="product-run"><img src="admin/product_pic/<?php echo $thumb_value;?>" alt="slide"></div></a>
-		</div>
-		<?php
-		}
-		?>
-		</div>
+			<section class="slider">
+			<div class="flexslider">
+			<ul class="slides">
+				<li data-thumb="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>">
+					<img src="admin/product_pic/<?php echo $productinfo['product_featureimg'];?>" />
+				</li>
+				<?php
+					$thumb_img = explode(",",$productinfo['product_img']);
+					foreach($thumb_img as $thumb_key=>$thumb_value)
+					{ ?>
+						<li data-thumb="admin/product_pic/<?php echo $thumb_value;?>">
+							<img src="admin/product_pic/<?php echo $thumb_value;?>" />
+						</li>
+				<?php
+					}
+				?>
+					
+			</ul>
+			</div>
+		</section>
 		</div>
 		<div class="col-right">
 		<div class="washarea">
@@ -69,7 +72,11 @@
 		<a class="nav-link js-scroll-trigger" href="#summary">Write a Review</a>
 		</div>
 		<div class="clearfix"></div>
-		<p><?php echo substr($productinfo['short_description'],0,90);?></p>
+		<?php
+			if($productinfo['short_description'] != '' && $productinfo['short_description'] != NULL)
+				echo "<p>".substr($productinfo['short_description'],0,90)."</p>";
+		?>
+		
 		<?php if($productinfo['product_desc'] != '' && $productinfo['product_desc'] != NULL)
 		{ ?>
 			<a href="javascript:void(0)" title="show" class="more">more</a>
@@ -237,12 +244,14 @@
 		</div>
 		<div class="cart-info">
 		<h4><?php echo $data_product['product_name'];?></h4>
-		<ul>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/star-symbol.svg" alt="start"></a></li>
-		<li><a href="#"><img src="images/grey-symbol.svg" alt="start"></a></li>
+		<?php
+            $sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='".$data_product['product_id']."' AND review_status = 'Publish'";
+            $run_avrageviews = mysqli_query($con,$sql_avrageviews) or die(mysqli_error($con));
+            $review_value = mysqli_fetch_array($run_avrageviews);
+            $total_avrege = $review_value['total'];
+        ?>
+        <ul>
+		<li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
 		</ul>
 		<h6>$<?php echo $data_product['product_price'];?></h6>
 		<button type="submit" id="addto-cartslide" class="cart-add" value="<?php echo $data_product['product_id'];?>">add to cart</button>

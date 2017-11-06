@@ -94,7 +94,10 @@
     <!--main jquery-->
     <script src="js/jquery.min.js"></script>
     <!--bootstrap min js-->
-    <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	
+	<!--Flex JS-->
+	<<script src="js/jquery.flexslider-min.js"> </script>
     <!--owl carousel-->
     <script src="js/owl.carousel.min.js"></script>
     <!--star rating js-->
