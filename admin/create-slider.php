@@ -206,7 +206,10 @@ require('header-menu.php');
     $('#r_slider_category').on('change',function(){
      var host=window.location.origin+'/dearbeard/product-serach.php?category=';
      if($(this).val()!=''){
-         host=host+$(this).val();
+         var selectedVal=$(this).val();
+         selectedVal=selectedVal.replace('+','%2B');
+         //selectedVal=selectedVal.replace('','%20');
+         host=host+selectedVal;
          $('#r_slider_link').val(host);
      }   
     })
