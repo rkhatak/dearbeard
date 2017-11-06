@@ -11,9 +11,20 @@ $tab_name = "admininfo";
 
 $user_data = showuserdata($con,$id,$tab_name);
 $edit_uid = $_GET['edit_uid'];
-$sql_list = "SELECT *FROM product WHERE product_id = '$edit_uid' ";
+$sql_list = "SELECT * FROM product WHERE product_id = '$edit_uid' ";
 $run_list = mysqli_query($con,$sql_list) or die(mysqli_error($con));
 $pro_data = mysqli_fetch_array($run_list);
+
+$sql_list_product_tag = "SELECT tId FROM product_tag where pId = '$edit_uid'";
+$run_list_product_tag = mysqli_query($con,$sql_list_product_tag) or die(mysqli_error($con));
+$getTagProductIds=[];
+if($run_list_product_tag){
+    foreach($run_list_product_tag as $v){
+      $getTagProductIds[]=$v['tId'];  
+    }
+}
+$sql_list_tag = "SELECT *FROM tag";
+$run_list_tag = mysqli_query($con,$sql_list_tag) or die(mysqli_error($con));
 //echo '<pre>';print_r($pro_data);die;
 if(isset($_POST['edit_product']))
 {
@@ -27,7 +38,7 @@ if(isset($_POST['edit_product']))
  $product_quantity = mysqli_real_escape_string($con,$_POST['product_quantity']);
  $product_weight = mysqli_real_escape_string($con,$_POST['product_weight']);
   $product_shipping = mysqli_real_escape_string($con,$_POST['product_shipping']);
-  $product_tag=mysqli_real_escape_string($con,$_POST['product_tag']);
+  $product_tag=$_POST['product_tag'];
 // Check Works Limit Of Discription
  
 
@@ -78,20 +89,19 @@ if(isset($_POST['edit_product']))
         }else{
             $pic_name =mysqli_real_escape_string($con,$_POST['product_img1']);
         }
+        $feature_imgname=($feature_imgname=='')?$_POST['feature_img1']:$feature_imgname;
 	 $product_info = array(
 	 'product_name' => $product_name ,
-	 'product_desc' => $product_desc ,
-	 'short_description' => $short_desc ,
+	 'product_desc' => strip_tags($product_desc),
+	 'short_description' => strip_tags($short_desc),
 	 'product_price' => $product_price ,
 	 'product_cat_id' => $product_cat_id ,
 	 'subproduct_cat_id' => $subproduct_cat_id ,
 	 'product_img' => $pic_name,
-	  'product_featureimg' => $feature_imgname ,
+	 'product_featureimg' => $feature_imgname ,
 	 'product_SKU' => $product_quantity,
 	 'product_weight' => $product_weight,
-	 'product_shipping' => $product_shipping,
-	 'product_tag'=>$product_tag
-
+	 'product_shipping' => $product_shipping
 	);
 
 	 $tab_product = "product";
@@ -99,7 +109,16 @@ if(isset($_POST['edit_product']))
 	 
 	 if($result == true)
 	 {
-		 
+                 $deleteQuery="delete from product_tag where pid='".$edit_uid."'";   
+                 $deleteDon=mysqli_query($con,$deleteQuery) or die(mysqli_error($con));
+                 if($deleteDon){
+                    if($product_tag && $product_tag!=''){
+                        foreach($product_tag as $tags){
+                            $sql = "insert into product_tag set pid='".$edit_uid."',tid='".$tags."'";	
+                            $run = mysqli_query($con,$sql) or die(mysqli_error($con)) ;
+                        }
+                     }
+                  }
       $msg = "<h5 style='text-align: center;color: green;'>Product  Update Succesfully </h5>";
        
 	 }	
@@ -116,8 +135,8 @@ if(isset($_POST['edit_product']))
 	
 	$product_info = array( 
 	 'product_name' => $product_name ,
-	 'product_desc' => $product_desc ,
-	 'short_description' => $short_desc ,
+	 'product_desc' => strip_tags($product_desc) ,
+	 'short_description' => strip_tags($short_desc) ,
 	 'product_price' => $product_price ,
 	 'product_cat_id' => $product_cat_id ,
 	 'subproduct_cat_id' => $subproduct_cat_id ,
@@ -226,7 +245,7 @@ require('header-menu.php');
 		$run_cat1 = mysqli_query($con,$sql_cat1) or die(mysqli_error($con));
 		while($data_cat = mysqli_fetch_array($run_cat1))
 		{
-		?>
+                ?>
 		<option value="<?php echo $data_cat['cat_name']?>"><?php echo $data_cat['cat_name']?></option>	
 		<?php
 		}	
@@ -247,8 +266,19 @@ require('header-menu.php');
 		</div>
 
 		<div class="form-group">
-        <label>Tag</label>                
-        <input value="<?php echo $pro_data['product_tag'] ?>" type="text" name="product_tag" class="form-control select2 select2-hidden-accessible" style="width: 100%;" required >
+                    <label>Tag</label>  
+                    <select name="product_tag[]" multiple="multiple" required="" class="form-control select2 select2-hidden-accessible" style="width: 100%;">
+                        <option value="">Select Tag</option>
+                        <?php
+                        while($data_list = mysqli_fetch_array($run_list_tag)){
+                            
+                            ?>
+                        <option value="<?php echo $data_list['id']?>" <?php echo in_array($data_list['id'], $getTagProductIds)?'selected':''?>><?php echo $data_list['name']?></option>  
+                       <?php }
+                        
+                        ?>
+                    </select>
+        
 		</div>
 		
 		<div class="form-group">
