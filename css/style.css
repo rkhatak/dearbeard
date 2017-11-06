@@ -625,13 +625,13 @@ transition:background-color 0.4s ease-out;
 .login-top .col-left img{padding:5px;border:1px solid #000;display:block;margin:0 auto;}
 .login-top .col-right{padding:30px 30px 30px 0;}
 .login-top .col-right a:hover{text-decoration:underline;}
-.dashboard{border:1px solid #000;margin-top:15px;}
+.dashboard{margin-top:15px;}
 /**************************************************************myaccount********************************************************************/
 
 /**************************************************************login-middle********************************************************************/
 
 .dashboard ul li:hover, .dashboard ul li.active{background:#000;}
-.dashboard {border: 1px solid #000;}
+.dashboard {}
 .dashboard ul li a{text-transform: uppercase;font-weight: 500;}
 /**************************************************************login-middle********************************************************************/
 
@@ -917,7 +917,7 @@ margin-left: 0px;}
 .clear_all{margin-top: 15px;margin-left: 2px; background-color: #000;border: none;    color: #fff;    height: 30px;display:block;    font-family: inherit;font-size: 13px;width: 141px;}
 .clear_all:active{padding:0;}
 .first_check{margin-top:15px;}
-.control {	display: block;	position: relative;	padding-left: 30px;	margin-bottom: 8px;	cursor: pointer;	font-size: 14px;	line-height: 26px;	color: #000;margin-left:2px;font-weight: 400;font-family: 'Roboto',sans-serif;}
+.control {	display: block;	position: relative; text-transform:uppercase;	padding-left: 30px;	margin-bottom: 8px;	cursor: pointer;	font-size: 14px;	line-height: 26px;	color: #000;margin-left:2px;font-weight: 400;font-family: 'Roboto',sans-serif;}
 .control__indicator {position: absolute;top: 2px;left: 0;height: 20px;width: 20px;border:1px solid #000;background: #fff;}
 .control input:checked ~ .control__indicator:after {display: none;}
 /* .control--checkbox .control__indicator:after {left: 5px;top: 0px;width: 8px;height: 16px;border: solid #000;border-width: 0 2px 2px 0;	transform: rotate(45deg);} */
@@ -1020,7 +1020,7 @@ letter-spacing: 0.5px;}
 
 /********************************************************dashboard ekta(25-09-2017)********************************************/
 #myaccount{background:#ebebeb;padding:15% 0 120px 0;}
-.dashboard{border:1px solid #000;}
+.dashboard{}
 .dashboard ul li{display:block;padding:10px 0 10px 15px;border-bottom:1px solid #000;-webkit-transition:background-color 0.4s ease-out;-moz-transition: background-color 0.4s ease-out;-o-transition: background-color 0.4s ease-out;transition: background-color 0.4s ease-out;}
 .dashboard ul li:hover, .dashboard ul li.active{background:#000;}
 .dashboard ul li:last-child{border:none;}
