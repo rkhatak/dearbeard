@@ -220,6 +220,19 @@ function cartupdate($con,$session_id,$product_id,$cart)
 	return $run;
 }
 
+function cartmodify($con,$session_id,$cartId,$cart)
+{
+	
+	$sql = "UPDATE cart SET" ;
+	foreach($cart as $key=>$value)
+	{
+	 $sql = $sql." $key = '".$value."' , " ;	 
+	}
+	echo $sql_main = rtrim($sql," ,")." WHERE cart_id = '$cartId'";
+    $run = mysqli_query($con,$sql_main) or die(mysqli_error($con));
+	return $run;
+}
+
 
 
 
