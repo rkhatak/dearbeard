@@ -12,6 +12,7 @@
         );
         
         \Stripe\Stripe::setApiKey($stripe['secret_key']);
+        //\Stripe\Stripe::$apiBase = "https://api-tls12.stripe.com";
         
         
         
@@ -54,6 +55,7 @@
         if($run == true)
         {
         $msg =  "<h5 style='color:green;'>Thanks For Payment</h5>";
+        echo "<script>window.location ='success.php';</script>";
         }
         }else{
         
@@ -112,7 +114,7 @@
         </div>
         <div class="form-group">
         <label for="amount">Amount</label>
-        <input type="text" name="amount" value="<?php echo $_SESSION['amount']; ?>" class="form-control" readonly>
+        <input type="text" name="amount" id="r_amount" value="<?php echo $_SESSION['amount']; ?>" class="form-control" readonly>
         </div>
         <div class="form-group">
         <input type="submit" class="submit" value="Submit Payment">
@@ -131,6 +133,12 @@
         $(function() {
         var $form = $('#payment-form');
         $form.submit(function(event) {
+          var amt=$.trim($('#r_amount').val());  
+          if(amt<=50){
+              alert('Order amount should be greator than 50');
+              return false;
+          }
+            
         // Disable the submit button to prevent repeated clicks:
         $form.find('.submit').prop('disabled', true);
         

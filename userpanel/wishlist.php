@@ -67,12 +67,15 @@
         <img src="../admin/product_pic/<?php echo $data_wishlist['wishlist_product_img'];?>" alt="<?php echo $data_wishlist['wishlist_product'];?>">
         </div>
         <p><?php echo $data_wishlist['wishlist_short_description'];?></p>
-        <ul class="ratings">
-        <li><img src="images/grey-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
-        <li><img src="images/yellow-star.png" alt="star"></li>
+        <p><?php echo $data_product['short_description'];?></p>
+        <?php
+            $sql_avrageviews= "SELECT AVG(review_value) AS total FROM product_review WHERE product_id='".$data_wishlist['wishlist_product_id']."' AND review_status = 'Publish'";
+            $run_avrageviews = mysqli_query($con,$sql_avrageviews) or die(mysqli_error($con));
+            $review_value = mysqli_fetch_array($run_avrageviews);
+            $total_avrege = $review_value['total'];
+        ?>
+        <ul>
+        <li><input type="text" disabled="true" name="rating_value"  id="input-21b" value="<?php echo $total_avrege;?>" class="rating"></li>
         </ul>
         </a><button href="#" class="btn wcat-cart" value="<?php echo $data_wishlist['wishlist_product_id'];?>">add to cart<span><?php echo "$".$data_wishlist['wishlist_product_price'];?></span></button>
         </div>

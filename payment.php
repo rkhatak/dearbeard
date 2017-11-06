@@ -3,7 +3,7 @@
         require_once('header.php');
         require_once('session.php');
         $UserEmail = $_SESSION['UserEmail'];
-        $UserID = $_SESSION['UserID'];
+        $UserID = $_SESSION['UserId'];
         
         if(isset($_POST['pay']))
         {
@@ -16,6 +16,7 @@
         // Show All data Of User   
         $user_data = userinfo($con,$UserEmail) ;
         $custmer_info = mysqli_fetch_array($user_data);
+        //echo '<pre>';        print_r($custmer_info);die;
         
         $custmer_id =  $custmer_info['UserID'];
         $custmer_name =  $custmer_info['UserFirstName']." ".$custmer_info['UserLastName'];
@@ -40,16 +41,6 @@
         $order_quantity = $order_info['product_quantity'];
         $order_type = 'card';
         $order_amount = $order_price*$order_quantity;
-        
-        
-        
-        
-        $sql_addcart = "SELECT *FROM orders WHERE order_proid = '$order_proid' AND session_id = '$session_id' ";
-        $run_addcart = mysqli_query($con,$sql_addcart) or die(mysqli_error($con));
-        $count_row = mysqli_num_rows($run_addcart);
-        
-        if($count_row==0 || $count_row<1 )
-        {
         
         $order_array = array(
         'session_id' => $session_id,
@@ -79,16 +70,6 @@
         echo "<script>window.location ='charge.php';</script>";
         }
         
-        }else if($count_row>=1){
-        
-        echo $sql = "UPDATE orders SET order_quantity = '$order_quantity'  WHERE order_proid = '$order_proid' AND session_id = '$session_id' ";
-        $run = mysqli_query($con,$sql) or die(mysqli_error($con));
-        if($run == true)
-        {
-        //header('Location:charge.php');
-        echo "<script>window.location ='charge.php';</script>";
-        }
-        }
         
         }
         }

@@ -19,7 +19,7 @@
 	$username = mysqli_real_escape_string($con,$_POST['username']);
 	$password = md5(mysqli_real_escape_string($con,$_POST['password']));
 	$login_arrays = array( 'UserEmail' => $username,
-	'UserPassword' => $password
+	'UserPassword' => $password,'Userstatus'=>'Active'
 	);
 
 	$login_result = loginuser($con,$login_arrays);
@@ -69,7 +69,9 @@
 	<link rel="stylesheet" href="https://raw.githubusercontent.com/jamesflorentino/nanoScrollerJS/master/bin/css/nanoscroller.css">
 	<!--owl carousel-->
 	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">    
+	<link rel="stylesheet" href="css/owl.theme.default.min.css">   
+	<!--Flex Slider-->
+	<link rel="stylesheet" href="css/flexslider.css"> 
 	<!--style-->
 	<link href="css/style.css" rel="stylesheet">
 	<!--style-->

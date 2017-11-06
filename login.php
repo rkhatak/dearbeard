@@ -3,10 +3,10 @@
 		
 		if(isset($_POST['login_user']))
 		{
-		$useremail = mysqli_real_escape_string($con,$_POST['useremail']);
+                $useremail = mysqli_real_escape_string($con,$_POST['useremail']);
 		$password = md5(mysqli_real_escape_string($con,$_POST['pwd']));
 		$login_arrays = array( 'UserEmail' => $useremail,
-		'UserPassword' => $password
+		'UserPassword' => $password,'Userstatus'=>'Active'
 		);
 
 		$login_result = loginuser($con,$login_arrays);

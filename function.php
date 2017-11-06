@@ -286,7 +286,7 @@ function totalitem($con,$session_id)
 
 function userinfo($con,$UserEmail)
 {
-	$sql_userinfo = "SELECT *FROM users WHERE UserEmail = '$UserEmail' AND Userstatus = 'Active'";
+	echo $sql_userinfo = "SELECT *FROM users WHERE UserEmail = '$UserEmail' AND Userstatus = 'Active'";
 	$run_userinfo = mysqli_query($con,$sql_userinfo) or die(mysqli_error($con));
 	return $run_userinfo;
 }
