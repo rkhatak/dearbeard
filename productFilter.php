@@ -105,7 +105,7 @@ while ($data_catproduct_win = mysqli_fetch_array($run_catproduct)) {
     $counter += 1;
     ?>
         <div class="owl-item owl_item_first">
-<<<<<<< HEAD
+
             <div class="item">
                 <a href="#"></a><div class="thick-hair thick_background effect"><a href="#">
                         <div class="effect_box" >
