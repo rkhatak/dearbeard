@@ -54,14 +54,16 @@ if(isset($_POST['add_product']))
            
             $imageProductName=strtotime(date('y-m-d h:i:s')).$i.'image.jpeg'; 
              array_push($product_img,$imageProductName);
-            $feature_imgname=$imageName;
-            $source = fopen($fImage, 'r');
-            $path = 'product_pic/'.$imageProductName;
-            $destination = fopen($path, 'w');
-            stream_copy_to_stream($source, $destination);
-            fclose($source);
-            fclose($destination);
-			
+            //$feature_imgname=$imageName;
+            if($fImage != '' && $fImage != NULL){
+                $source = fopen($fImage, 'r');
+                $path = 'product_pic/'.$imageProductName;
+                $destination = fopen($path, 'w');
+                stream_copy_to_stream($source, $destination);
+                fclose($source);
+                fclose($destination);
+            }
+            
 	 }
 	} 
 

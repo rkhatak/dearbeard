@@ -1,7 +1,5 @@
-        <?php
-        // Call header
-        
-        require_once('header.php');
+<?php
+require_once('header.php');
         
         /* Slider Code */
         $run_slider = showslider($con);

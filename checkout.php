@@ -1,6 +1,6 @@
-		<?php
-		require_once('header.php');
-		require_once('session.php');
+<?php
+require_once('header.php');
+require_once('session.php');
 		$UserEmail = $_SESSION['UserEmail'];
 		$UserID = $_SESSION['UserID'];
 		$item_total = 0;

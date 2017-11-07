@@ -1,7 +1,8 @@
-	<?php
-	ob_start();
-	require_once('function.php');
-	session_start();
+<?php
+ob_start();
+session_start();
+require_once('function.php');
+
 	$session_id = session_id();
 
 	/*  show menu 1 to 4 */

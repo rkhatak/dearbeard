@@ -175,7 +175,7 @@ while ($data_catproduct = mysqli_fetch_array($cat_product)) {
                                 <div class="shampoo-image">
                                     <img src="admin/product_pic/<?php echo $data_catproduct_win['product_featureimg']; ?>" alt="<?php echo $data_catproduct_win['product_name']; ?>">
                                 </div>
-                                    <?php if ($data_catproduct_win['short_description'] != '') { ?>
+                                    <?php if ($data_catproduct_win['short_description'] != '' && $data_catproduct_win['short_description'] != NULL) { ?>
                                     <p><?php echo $data_catproduct_win['short_description']; ?></p>
                                 <?php } ?>
                                     <?php

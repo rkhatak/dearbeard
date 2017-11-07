@@ -1,5 +1,5 @@
-		<?php		
-		require('header.php');
+<?php		
+require('header.php');
 		
 		$product_id = $_GET['product_id'];
 		$detail = productdetail($con,$product_id);
